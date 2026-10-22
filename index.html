@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex, nofollow">
   <title>What We Inherited: a journey through human history</title>
   <style>
 /*
@@ -465,7 +466,7 @@ canvas.confetti {
 /*
  * Quiz content. Edit freely, then run `node scripts/validate.js`.
  *
- * Each question has exactly four options. `correct` is the index (0-3) of the
+ * Each question has exactly three options. `correct` is the index (0-2) of the
  * right one. The letters the player earns live in secret.js, not here: a correct
  * answer to question N reveals letter N of the final message.
  */
@@ -475,73 +476,96 @@ canvas.confetti {
   var QUESTIONS = [
     {
       id: 1,
-      era: "c. 11,000 years ago",
-      question: "Where did people first begin farming wheat and barley, around 11,000 years ago?",
+      era: "from c. 300,000 years ago",
+      question: "Our own species, Homo sapiens, is about 300,000 years old. Where do the oldest known remains of our species come from?",
       options: [
-        { text: "The Amazon rainforest in South America" },
-        { text: "The cold northern plains of Scandinavia and Finland" },
-        { text: "The Fertile Crescent, in the Middle East" },
-        { text: "The deserts of southern Africa" }
+        { text: "Europe, in France and Spain" },
+        { text: "East Asia, in China and Indonesia" },
+        { text: "Africa, in Morocco and Ethiopia" }
       ],
       correct: 2,
-      explanation: "Wheat, barley and sheep were first farmed in the Fertile Crescent, a curved region of the Middle East. Farming also began separately in other places, including China (rice), Mesoamerica (maize) and the Andes (potatoes).",
+      explanation: "The oldest known Homo sapiens fossils come from Africa: Jebel Irhoud in Morocco (about 300,000 years old) and Omo Kibish in Ethiopia (more than 230,000 years old). Our species later spread to every continent except Antarctica. Many scientists think different groups across Africa all contributed to our species, rather than one single starting place, and new finds can still change the dates.",
+      whyItMatters: "Every person alive today belongs to the same species, with the same basic abilities and a common ancestry. Everything in this quiz, from farming to the internet, was done by people with minds like ours. It also shows how knowledge of the distant past gets revised: new fossils and new dating methods keep changing the picture, so “earliest known” always means “earliest found so far”.",
+      inherited: "We inherited language, tools, fire and art from hunter-gatherer ancestors, who lived this way for most of our species’ history."
+    },
+    {
+      id: 2,
+      era: "from c. 11,000 years ago",
+      question: "For almost all of that time, people lived as hunters and gatherers, moving with the seasons. Then, about 11,000 years ago, some groups began to plant crops and keep animals. Where did people begin farming on their own, without learning it from anyone else?",
+      options: [
+        { text: "Scandinavia, Siberia and Patagonia" },
+        { text: "The Middle East, China and Mesoamerica" },
+        { text: "Britain, France and Spain, in western Europe" }
+      ],
+      correct: 1,
+      explanation: "Farming began separately in several parts of the world. In the Fertile Crescent of the Middle East, people farmed wheat, barley and sheep about 11,000 years ago. Rice and millet followed in China, and maize and squash in Mesoamerica. Farming also arose independently in the Andes, New Guinea, parts of Africa and eastern North America, and some regions adopted it from their neighbours.",
       whyItMatters: "Almost everything on your plate began with early farmers. Wheat, barley, rice, maize and potatoes still feed most of the world, so bread, pasta and rice dishes all trace back to these first crops. Farming also let people stay in one place, store food and build towns, which is why cities, jobs and governments exist at all. Today, climate change is putting those same crops under pressure, and scientists look to older, more varied crop types and seed banks to find plants that can cope with heat and drought.",
       inherited: "We inherited thousands of crop varieties, but many are disappearing as farms rely on fewer types."
     },
     {
-      id: 2,
-      era: "c. 3300 BCE",
-      question: "Where did people first press signs into clay tablets to keep records, around 5,000 years ago?",
+      id: 3,
+      era: "c. 3500 BCE",
+      question: "Farming meant food could be stored, and villages grew into towns. Where did the first real cities grow up, around 5,500 years ago?",
       options: [
-        { text: "Mesopotamia, in what is now southern Iraq" },
-        { text: "Ancient Egypt, along the River Nile" },
-        { text: "The Inca Empire, in what is now Peru" },
-        { text: "Viking Norway, in northern Europe" }
+        { text: "Southern Mesopotamia and Elam, in today’s Iraq and Iran" },
+        { text: "Northern Europe, in what are now Britain, Germany and Denmark" },
+        { text: "The Amazon and Congo river basins, in South America and Africa" }
       ],
       correct: 0,
-      explanation: "Scribes in the city of Uruk, in Mesopotamia, pressed wedge-shaped signs into wet clay. The first records were mostly about grain, animals and workers, not stories. Egypt, China and the Maya also developed writing, in their own ways.",
+      explanation: "By about 3500 BCE, Uruk in southern Mesopotamia had grown into a city of many thousands of people, with temples, workshops and officials. Susa, in neighbouring Elam (in today’s Iran), grew at about the same time. Irrigation from the Tigris and Euphrates rivers fed them. Earlier large settlements such as Çatalhöyük in Turkey existed, but historians usually call them towns because they lacked the same specialised jobs and institutions.",
+      whyItMatters: "Most people today live in cities, and the same challenges first appeared in these early ones: food and water for many people, rules for living together, and unequal wealth. Early cities created jobs and institutions that still exist, such as scribes, builders, traders and administrations. They are also where new ideas meet and spread, which is why so many inventions in this quiz came from urban places. And they are still fragile: they depend on farms and water far outside their walls, as Uruk did.",
+      inherited: "We inherited the idea of living together in large numbers, with specialists, markets and shared institutions. We also inherited the inequalities that came with them."
+    },
+    {
+      id: 4,
+      era: "from c. 3300 BCE",
+      question: "Big cities had to keep track of grain, workers and taxes, and memory was not enough. Which regions invented writing on their own, without copying another writing system?",
+      options: [
+        { text: "Mesopotamia, China and Mesoamerica" },
+        { text: "Greece, Rome and Phoenicia, around the Mediterranean" },
+        { text: "Britain, Germany and Scandinavia" }
+      ],
+      correct: 0,
+      explanation: "Writing was invented independently at least three times. In Mesopotamia (about 3300 BCE) scribes pressed wedge-shaped signs into clay to record grain, animals and workers. In China, the oldest surviving writing dates from about 1250 BCE. In Mesoamerica, writing appeared by about 600 BCE. Egypt developed hieroglyphs around 3200 BCE, and historians still debate whether it was fully independent of Mesopotamia.",
       whyItMatters: "Whenever you sign a contract, pay a bill or check a bank statement, you rely on the idea invented here: a lasting record that does not depend on anyone’s memory. The first tablets were about grain and workers, which shows that writing began as a tool for running an economy, not for poetry. Today, records still decide who owns what and who owes what. Digital files can disappear faster than clay ever did, so keeping records safe is still a real problem for archives, companies and families.",
       inherited: "Clay lasts for thousands of years. Writing on wood or cloth mostly rotted away, so we know some peoples much better than others."
     },
     {
-      id: 3,
+      id: 5,
       era: "c. 2560 BCE",
-      question: "Who built the Great Pyramid of Giza in Egypt, around 4,500 years ago?",
+      question: "Cities and records let rulers organise huge projects. In Egypt, around 4,500 years ago, the Great Pyramid of Giza was built. Who did the work, according to archaeology?",
       options: [
-        { text: "Enslaved foreign captives, forced to work under whips" },
-        { text: "A few engineers using machines that were later lost" },
-        { text: "Volunteers from across the Mediterranean, in one summer" },
-        { text: "Organised Egyptian work crews, fed and housed by the state" }
+        { text: "Enslaved foreign captives, forced to work under overseers’ whips" },
+        { text: "Organised Egyptian work crews, fed and housed by the state" },
+        { text: "Volunteers from across the Mediterranean, in one summer" }
       ],
-      correct: 3,
+      correct: 1,
       explanation: "Archaeologists found workers’ towns, bakeries and graves near the pyramids. They show organised crews of skilled builders and rotating labourers, not mainly slaves as films suggest.",
       whyItMatters: "Big projects still depend on the same things: food, shelter, tools, planning and managers. The pyramid evidence shows how a state organised a large workforce, the same skill behind modern building sites, hospitals and supply chains. It also shows why checking the evidence matters. The film image of slaves under whips turned out to be wrong, and historians corrected it by digging. Today, the same habit of asking “what is the evidence?” helps us spot false stories online.",
       inherited: "We know the pharaoh’s name but almost none of the workers’ names, which is why their homes and graves matter."
     },
     {
-      id: 4,
+      id: 6,
       era: "c. 2600–1900 BCE",
-      question: "Where did people build planned cities with straight streets and drains about 4,500 years ago, in a civilization whose writing we still cannot read?",
+      question: "At the same time, in another river valley, people built planned cities with straight streets and drains. We still cannot read their writing. Which river valley was it?",
       options: [
-        { text: "Ancient Greece, around the city of Athens" },
-        { text: "Along the Indus River, in today’s Pakistan and India" },
-        { text: "The Inca Empire, high in the Andes mountains" },
-        { text: "Viking towns on the coast of Scandinavia" }
+        { text: "The Tigris and Euphrates, in Iraq and Syria" },
+        { text: "The Yellow River, in China" },
+        { text: "The Indus, in today’s Pakistan and India" }
       ],
-      correct: 1,
+      correct: 2,
       explanation: "The Indus Valley civilization (cities such as Harappa and Mohenjo-daro) had planned streets, brick houses, drains and standard weights. Thousands of short inscriptions survive, but nobody has been able to read them.",
       whyItMatters: "Clean water and working drains are still what keep cities healthy: when they fail, diseases such as cholera come back quickly. The Indus cities show that people understood this about 4,500 years ago. They also used standard weights, the same idea behind kilograms and metres today, which lets strangers trade fairly. And the unreadable script is a reminder that we only know a society through what happens to survive.",
       inherited: "We inherited ideas about city planning, but we lost their language, so we cannot hear their own story."
     },
     {
-      id: 5,
+      id: 7,
       era: "c. 1754 BCE",
-      question: "Which ruler is famous for laws carved on a tall stone pillar, about 3,750 years ago?",
+      question: "As states grew, rulers wrote their laws down for everyone to see. About 3,750 years ago, one famous king had his laws carved on a tall stone pillar. Who was he?",
       options: [
-        { text: "Hammurabi, the king of Babylon" },
-        { text: "Julius Caesar, ruler of Rome" },
-        { text: "Alexander the Great, king of Macedon" },
-        { text: "Ramesses II, pharaoh of Egypt" }
+        { text: "Hammurabi, king of Babylon" },
+        { text: "Sargon of Akkad, king of Mesopotamia" },
+        { text: "Cyrus the Great, king of Persia" }
       ],
       correct: 0,
       explanation: "King Hammurabi’s laws, carved around 1754 BCE, are the best-known law collection from ancient Mesopotamia. Older collections exist, and punishments depended on social class: free people, commoners and enslaved people were treated differently.",
@@ -549,119 +573,97 @@ canvas.confetti {
       inherited: "We inherited written law. Equal treatment for everyone took thousands of years more and is still unfinished."
     },
     {
-      id: 6,
-      era: "c. 1000 BCE",
-      question: "Which seafaring people spread an early alphabet around the Mediterranean through trade, about 3,000 years ago?",
+      id: 8,
+      era: "c. 1250 BCE",
+      question: "Long after Mesopotamia, writing was invented again, independently, far away in China. What was the earliest substantial Chinese writing used for?",
       options: [
-        { text: "The Vikings, from Scandinavia" },
-        { text: "The Aztecs, from what is now Mexico" },
-        { text: "The Phoenicians, from what is now Lebanon" },
-        { text: "The Mongols, from the grasslands of Asia" }
+        { text: "Recording taxes on paper sheets, kept in government offices" },
+        { text: "Copying poems on silk scrolls, for the royal court’s libraries" },
+        { text: "Asking ancestors questions, carved on turtle shells and ox bones" }
       ],
       correct: 2,
-      explanation: "Phoenician traders carried a simple alphabet of about 22 letters, all consonants, to ports around the Mediterranean. The Greeks added vowels, and our own letters descend from theirs. Earlier alphabet signs were made by Semitic-speaking workers in Egypt and Sinai, who adapted Egyptian symbols.",
-      whyItMatters: "You are reading this in an alphabet that comes from this chain of workers, traders and scribes. Because an alphabet needs only a few dozen signs, far more people could learn to read and write, and that helped spread trade, literacy and ideas. The same idea sits on your phone keyboard today: a few dozen letters are enough to write anything. It also shows that borrowing and adapting from other cultures is how most inventions happen.",
-      inherited: "We inherited the letters you are reading now, shaped by Egyptians, Phoenicians, Greeks and Romans."
-    },
-    {
-      id: 7,
-      era: "c. 1250 BCE",
-      question: "Which ancient civilization carved questions for its ancestors on turtle shells and ox bones, creating the ancestor of Chinese writing?",
-      options: [
-        { text: "The Maya, in Central America" },
-        { text: "The Shang dynasty, in ancient China" },
-        { text: "The Egyptians, along the Nile" },
-        { text: "The Inca, in the Andes mountains" }
-      ],
-      correct: 1,
       explanation: "Shang kings heated bones and shells until they cracked, then carved the question and sometimes the answer. Tens of thousands of fragments have been found. This script developed into modern Chinese characters, and it grew up separately from Mesopotamia.",
       whyItMatters: "Chinese writing is still used every day by hundreds of millions of people, which makes it one of the oldest writing systems in continuous use. Because the characters keep their meaning across different spoken varieties, people who speak very differently can still read the same message. It also shows that writing was invented more than once, in different places, so history is not the story of one culture teaching everyone else.",
       inherited: "Because the characters keep their meaning across spoken varieties, writing helped link people who spoke very differently."
     },
     {
-      id: 8,
-      era: "c. 550–330 BCE",
-      question: "Which empire built a Royal Road with relay stations to carry messages about 2,700 km, from western Turkey to Iran?",
+      id: 9,
+      era: "c. 1000 BCE",
+      question: "Early scripts needed hundreds of signs, which made them hard to learn. About 3,000 years ago, a much simpler system of a few dozen letters spread around the Mediterranean through trade. Which seafaring traders spread it?",
       options: [
-        { text: "The Roman Empire, ruled from Italy" },
-        { text: "The Mongol Empire, from the wide grasslands of Asia" },
-        { text: "The Aztec Empire, in what is now Mexico" },
-        { text: "The Persian Empire, based in what is now Iran" }
+        { text: "The Minoans of Crete, in the Aegean Sea" },
+        { text: "The Phoenicians, from what is now Lebanon" },
+        { text: "The Egyptians, along the Nile in Africa" }
       ],
-      correct: 3,
-      explanation: "Persian kings ruled from Egypt to Central Asia. They used provinces run by governors, standard coins, a shared administrative language (Aramaic) and the Royal Road. They also collected heavy tribute and used forced labour.",
-      whyItMatters: "Governments today still use the Persian recipe: divide a large territory into provinces, build roads, use a shared language for official business, and collect taxes and keep records. The relay stations of the Royal Road are an ancestor of postal services and modern delivery networks. The same history carries a warning: the empire ran on tribute and forced labour, and much of what we know about it was written by its rivals. That is a good reminder to ask whose story you are hearing, even in today’s news.",
-      inherited: "Later empires copied Persian methods. Much of what we know about Persia was written by its Greek rivals, so Persian voices are partly lost."
+      correct: 1,
+      explanation: "Phoenician traders carried a simple alphabet of about 22 letters, all consonants, to ports around the Mediterranean. The Greeks added vowels, and our own letters descend from theirs. Earlier alphabet signs were made by Semitic-speaking workers in Egypt and Sinai, who adapted Egyptian symbols.",
+      whyItMatters: "You are reading this in an alphabet that comes from this chain of workers, traders and scribes. Because an alphabet needs only a few dozen signs, far more people could learn to read and write, and that helped spread trade, literacy and ideas. The same idea sits on your phone keyboard today: a few dozen letters are enough to write anything. It also shows that borrowing and adapting from other cultures is how most inventions happen.",
+      inherited: "We inherited the letters you are reading now, shaped by Egyptians, Phoenicians, Greeks and Romans."
     },
     {
-      id: 9,
-      era: "c. 508 BCE",
-      question: "Which ancient city is famous for letting male citizens vote directly on laws in a public assembly, about 2,500 years ago?",
+      id: 10,
+      era: "c. 1200–500 BCE",
+      question: "Writing meant that people could keep records for centuries, including records of the sky. Where were the earliest long-running written records of eclipses and planets kept?",
       options: [
-        { text: "Athens, on the coast of Greece" },
-        { text: "Sparta, in southern Greece" },
-        { text: "Babylon, in Mesopotamia" },
-        { text: "Persepolis, in Persia" }
+        { text: "Babylonia, in Iraq, and China" },
+        { text: "Greece and Italy, around the Mediterranean" },
+        { text: "Egypt and Ethiopia, along the Nile" }
       ],
       correct: 0,
+      explanation: "Chinese diviners recorded eclipses on oracle bones from about 1200 BCE, and Chinese astronomers kept records for the next two thousand years. In Babylon, scribes kept nightly diaries of the Moon, planets and weather from about 650 BCE, continuing for more than six centuries. Later Greek astronomers used the Babylonian records to find patterns such as the cycle of eclipses. Egyptians watched the stars too, mainly for calendars and rituals, but their surviving records are less continuous.",
+      whyItMatters: "Long records are how science finds patterns that no single lifetime can see. Today, climate scientists use old weather diaries and ship logs in the same way, and astronomers still use ancient eclipse records to measure how Earth’s rotation has slowed over thousands of years. It also shows why keeping data matters, even before you know what it will be used for.",
+      inherited: "We inherited the habit of recording observations patiently and checking them against each other. Most of the records are lost, and what survives is mostly on clay tablets and bones."
+    },
+    {
+      id: 11,
+      era: "from c. 600 BCE",
+      question: "Long records of the sky showed that nature follows patterns. Where did thinkers begin explaining storms, earthquakes and the stars by natural causes rather than by gods?",
+      options: [
+        { text: "Rome and Carthage, in what are now Italy and Tunisia" },
+        { text: "Egypt and Nubia, along the River Nile" },
+        { text: "Greek cities, in what are now Turkey and Greece" }
+      ],
+      correct: 2,
+      explanation: "Around 600 BCE, thinkers in Miletus, a Greek city on the coast of today’s Turkey, such as Thales and Anaximander, argued that natural events have natural causes. Their followers developed arguments, proofs and the study of anatomy. Similar ideas appeared elsewhere around the same time, for example in ancient India and China, so this was not one single starting point, and the Greeks also learned a lot from Egyptian and Babylonian knowledge.",
+      whyItMatters: "Asking “what is the natural cause of this?” and arguing about the evidence is the basis of modern science and medicine. It still shapes how we deal with disease, weather and disasters. It does not mean that people elsewhere did not ask questions, only that explanations based on observation and argument became a recognised way to think.",
+      inherited: "We inherited a way of asking questions and arguing with evidence. Much of Greek writing survives only because it was copied and translated later, including in Baghdad."
+    },
+    {
+      id: 12,
+      era: "c. 508 BCE",
+      question: "This new habit of asking questions and arguing about answers also shaped politics. Which ancient city is famous for letting male citizens vote directly on laws in a public assembly?",
+      options: [
+        { text: "Sparta, in southern Greece" },
+        { text: "Athens, on the coast of Greece" },
+        { text: "Babylon, in Mesopotamia" }
+      ],
+      correct: 1,
       explanation: "Athens developed direct democracy after the reforms of Cleisthenes (508 BCE). Only adult male citizens could take part; women, enslaved people and most foreigners were excluded.",
       whyItMatters: "Voting, juries and public debate are still how many countries make decisions, and the word “democracy” comes from Greek. But Athens left out women, enslaved people and foreigners, so the story is also about who gets included. In most countries women won the vote only in the last 100 to 150 years. Today’s arguments about who can vote, and whose voice counts, continue this very old discussion.",
       inherited: "We inherited the idea that ordinary people can take part in government, and a long struggle to include everyone."
     },
     {
-      id: 10,
-      era: "c. 280 BCE onward",
-      question: "In which city was a famous ancient Library, a great centre of learning, built over 2,000 years ago?",
+      id: 13,
+      era: "from c. 130 BCE",
+      question: "Meanwhile, trade and empires connected far-apart places. Which regions did the Silk Road trade routes link?",
       options: [
-        { text: "Rome, capital of the Roman Republic" },
-        { text: "Babylon, in Mesopotamia" },
-        { text: "Alexandria, on the coast of Egypt" },
-        { text: "Carthage, in North Africa" }
+        { text: "China, Central Asia, India and the Mediterranean" },
+        { text: "Mexico, Peru and Bolivia, in the Americas" },
+        { text: "Scandinavia, Iceland and Greenland, in northern Europe" }
       ],
-      correct: 2,
-      explanation: "The Library of Alexandria, founded under the Ptolemies in the 3rd century BCE, collected scrolls from around the known world. It did not burn in one night: it faded over centuries through fires, lost funding and political trouble.",
-      whyItMatters: "Libraries, archives and databases still face the same problem: knowledge disappears unless someone pays to keep it. The Library did not vanish in one dramatic fire; it faded through neglect and lost funding. Today, that is a warning for digital archives, old websites and research data, which can vanish quietly. It is one reason why public libraries and projects such as the Internet Archive matter.",
-      inherited: "Many ancient works survive only because they were copied elsewhere. Most ancient writing, though, is gone."
-    },
-    {
-      id: 11,
-      era: "c. 130 BCE–1450 CE",
-      question: "Which of these really travelled along the Silk Road trade routes from India to China?",
-      options: [
-        { text: "Potatoes, a crop from the Andes mountains" },
-        { text: "The religion of Buddhism, carried by monks" },
-        { text: "Steam engines, built by British engineers" },
-        { text: "Gutenberg’s printing press, invented in Germany" }
-      ],
-      correct: 1,
+      correct: 0,
       explanation: "The Silk Road was a web of land and sea routes, not one road. Silk, spices, glass and metal travelled along it, and so did ideas such as Buddhism (from India to China), technologies such as papermaking (from China westward), and diseases.",
       whyItMatters: "Globalisation is not new. Today’s world trade, from shipping containers to online shopping, continues a chain of exchange that is thousands of years old. Ideas, religions and skills travelled along these routes, and so did diseases, which is why modern airports and health agencies keep track of outbreaks. Understanding that cultures have always mixed helps us see that most traditions, foods and technologies have mixed origins.",
       inherited: "We inherited foods, crafts and religions shaped by many cultures. The same routes also carried disease and the trade in enslaved people."
     },
     {
-      id: 12,
-      era: "c. 126 CE",
-      question: "Which building in Rome, finished about 1,900 years ago, still has the largest unreinforced concrete dome in the world?",
-      options: [
-        { text: "The Colosseum, the great arena" },
-        { text: "The Parthenon, the Greek temple" },
-        { text: "Saint Peter’s Basilica, in Vatican City" },
-        { text: "The Pantheon, a temple turned church" }
-      ],
-      correct: 3,
-      explanation: "Roman builders mixed lime with volcanic ash and rubble to make concrete. The Pantheon’s dome, finished around 126 CE, still stands, and scientists are studying how the concrete lasts so long. Rome’s building was paid for by conquest and carried out partly with enslaved and conscripted labour.",
-      whyItMatters: "Concrete is the most widely used building material in the world, and making modern cement produces a noticeable share of the world’s carbon emissions. That is why engineers study Roman recipes: they hope to design concrete that lasts longer and has a smaller carbon footprint. Buildings that last for centuries also create less waste than buildings that must be replaced. It is a lesson in humility too: the Romans managed something we are still working to understand.",
-      inherited: "We inherited arches, domes and aqueducts. The exact Roman methods were mostly lost until the 1700s and 1800s."
-    },
-    {
-      id: 13,
+      id: 14,
       era: "628 CE",
-      question: "Where did a famous book of 628 CE set out rules for calculating with zero?",
+      question: "Along those routes, ideas travelled as well as goods. In 628 CE, a famous book set out rules for calculating with zero. Where was it written?",
       options: [
-        { text: "Ancient Rome, in the Latin-speaking world" },
-        { text: "Medieval England, at Oxford" },
-        { text: "India, in a book by Brahmagupta" },
-        { text: "Ancient Egypt, on rolls of papyrus" }
+        { text: "Ancient Rome, in Italy" },
+        { text: "Medieval England, near Oxford" },
+        { text: "India, in South Asia" }
       ],
       correct: 2,
       explanation: "In 628 CE the Indian mathematician Brahmagupta wrote rules for adding, subtracting and multiplying with zero. Zero had been used earlier as a placeholder in Babylonian and Maya numbers. Through scholars in the Islamic world, the idea reached Europe.",
@@ -669,89 +671,55 @@ canvas.confetti {
       inherited: "Our “Hindu-Arabic” numerals are named after two of the cultures that built them and passed them on."
     },
     {
-      id: 14,
-      era: "c. 820 CE",
-      question: "In which city did scholars around 820 CE write the book that gave us the word “algebra”?",
-      options: [
-        { text: "Baghdad, in what is now Iraq" },
-        { text: "Paris, in the kingdom of the Franks" },
-        { text: "Athens, in Byzantine Greece" },
-        { text: "London, in Anglo-Saxon England" }
-      ],
-      correct: 0,
-      explanation: "Al-Khwarizmi worked in Baghdad, where rulers and wealthy patrons paid scholars to translate Greek, Persian and Indian works into Arabic and to add new ideas. The word “algebra” comes from al-jabr in his book, and “algorithm” comes from a Latin form of his name.",
-      whyItMatters: "Algebra is how engineers design bridges, doctors work out doses and apps calculate routes. The word “algorithm” now describes the step-by-step instructions behind search results, social media feeds and AI. Knowing where these words come from shows that scientific knowledge was built by translating and improving each other’s work across languages and religions. It also reminds us that scholars in the Islamic world preserved and extended learning that later helped Europe.",
-      inherited: "The words show the route knowledge took. Maths was built by many cultures, not one."
-    },
-    {
       id: 15,
-      era: "c. 100 CE",
-      question: "Where was paper first made, before it spread west along trade routes?",
+      era: "c. 800–1020 CE",
+      question: "Zero and Indian numbers travelled west. Where did scholars bring together Greek, Persian and Indian knowledge and add algebra and experimental optics?",
       options: [
-        { text: "Egypt, from the papyrus plant of the Nile river" },
-        { text: "China, over 2,000 years ago, in the Han era" },
-        { text: "Italy, in the Middle Ages, by monks" },
-        { text: "Germany, for Gutenberg’s printing press" }
+        { text: "Paris and London, in France and England" },
+        { text: "Baghdad and Cairo, in Iraq and Egypt" },
+        { text: "Constantinople and Athens, in Turkey and Greece" }
       ],
       correct: 1,
-      explanation: "The oldest paper found by archaeologists is Chinese, from around the 2nd century BCE. Papermaking reached Samarkand and Baghdad by the 8th and 9th centuries, then Egypt, Spain and Italy. Many people and places took part, not one inventor.",
-      whyItMatters: "Paper made writing cheap, and cheap writing made schools, newspapers, books and offices possible. Today we use less paper, but the lesson is the same: cheaper and faster ways of sharing information spread knowledge, and they also spread rumours and misinformation. The story also shows that technologies spread through many hands, so it is wise to be careful with tidy “one inventor” stories.",
-      inherited: "Paper replaced costly parchment and papyrus in much of the world."
+      explanation: "In Baghdad, from about 800 CE, rulers and wealthy patrons paid scholars to translate Greek, Persian and Indian works into Arabic and to add new ideas. Al-Khwarizmi wrote his book on al-jabr there (about 820 CE), which gave us the word “algebra”, and “algorithm” comes from a Latin form of his name. In Cairo, Ibn al-Haytham (about 1011–1021 CE) tested ideas about light with experiments and wrote the Book of Optics.",
+      whyItMatters: "Algebra is how engineers design bridges, doctors work out doses and apps calculate routes. The word “algorithm” now describes the step-by-step instructions behind search results, social media feeds and AI. Knowing where these words come from shows that scientific knowledge was built by translating and improving each other’s work across languages and religions. It also reminds us that scholars in the Islamic world preserved and extended learning that later helped Europe. Testing ideas with experiments, as Ibn al-Haytham did, is also how modern science works.",
+      inherited: "Some Greek works survive today only through Arabic translations. The story shows that maths and science were built by many cultures, not one."
     },
     {
       id: 16,
-      era: "1377 CE",
-      question: "Which country printed a book with movable metal type in 1377, about 70 years before Gutenberg?",
+      era: "868–1450 CE",
+      question: "More books and more readers meant people needed cheaper ways to make and copy texts. Where did paper, printing from blocks and movable type first appear?",
       options: [
-        { text: "Germany, in Mainz" },
-        { text: "Italy, in the city of Venice" },
-        { text: "England, in London" },
-        { text: "Korea, at a Buddhist temple" }
+        { text: "China and Korea, in East Asia" },
+        { text: "Germany and the Netherlands" },
+        { text: "Italy and Spain, in southern Europe" }
       ],
-      correct: 3,
-      explanation: "The Korean Buddhist book Jikji was printed with metal type in 1377. China had movable clay type in the 1000s, and the oldest dated printed book, the Diamond Sutra (868 CE), was printed in China from carved wooden blocks. Gutenberg’s press (about 1450) combined metal type, oil-based ink and a press, and it spread quickly in Europe.",
-      whyItMatters: "The internet is today’s printing press: it spreads information quickly and cheaply, for better and for worse. Printing spread science, news and education, but also propaganda and rumours, the same trade-off we see on social media. The Korean example reminds us that important inventions often happened outside Europe and were left out of popular stories. Asking “who did this first, and who got the credit?” is still a useful question.",
-      inherited: "The story of one lone inventor hides centuries of work in East Asia."
+      correct: 0,
+      explanation: "Paper was made in China from about the 2nd century BCE. The oldest dated printed book, the Diamond Sutra (868 CE), was printed in China from carved wooden blocks. China had movable clay type in the 1000s, and the Korean Jikji was printed with metal type in 1377. Papermaking travelled west through Central Asia and the Islamic world, reaching Spain and Italy in the 1100s and 1200s, and Gutenberg’s press (about 1450) came later and spread quickly in Europe.",
+      whyItMatters: "Paper made writing cheap, and printing made copying cheap, so schools, newspapers, books and offices became possible. The internet is today’s printing press: it spreads information quickly and cheaply, for better and for worse. Printing spread science, news and education, and also propaganda and rumours, the same trade-off we see on social media. The East Asian story reminds us that important inventions often happened outside Europe and were left out of popular stories.",
+      inherited: "The story of one lone inventor hides centuries of work in East Asia and the Islamic world."
     },
     {
       id: 17,
-      era: "c. 1324–1600 CE",
-      question: "Which West African city, in the empire of Mansa Musa, became famous for its scholars and libraries?",
+      era: "from c. 1300 CE",
+      question: "While printing spread in East Asia, learning flourished in Africa too. Where did a rich gold-and-salt trading empire build a famous centre of scholarship, with libraries full of manuscripts?",
       options: [
-        { text: "Timbuktu, in the West African Sahel" },
-        { text: "Cairo, on the banks of the Nile in Egypt" },
-        { text: "Rome, on the River Tiber in Italy" },
-        { text: "Athens, below the Acropolis in Greece" }
+        { text: "Great Zimbabwe, in Zimbabwe" },
+        { text: "Kilwa, on the coast of Tanzania" },
+        { text: "Timbuktu, in Mali, West Africa" }
       ],
-      correct: 0,
+      correct: 2,
       explanation: "The Mali Empire grew rich on gold and salt trade. Timbuktu’s mosques and private libraries held thousands of manuscripts on law, astronomy, medicine and mathematics, in Arabic and local languages. The same trade networks also sold enslaved people.",
       whyItMatters: "Popular images of Africa’s past often leave out its scholars. Timbuktu shows that West Africa had libraries, law and science centuries ago. Today, projects to protect and digitise old manuscripts help keep that history alive, and they change how we see the region now: as a place with a long tradition of learning. The rescue of manuscripts in 2012 and 2013 also shows that ordinary people can protect culture in a crisis.",
       inherited: "In 2012–13 librarians smuggled many manuscripts to safety during conflict, though some were destroyed."
     },
     {
       id: 18,
-      era: "c. 1438–1533 CE",
-      question: "Which empire, high in the Andes, recorded numbers with knotted cords called khipu instead of writing?",
+      era: "from 1492",
+      question: "In 1492, European ships linked the Old World with the Americas, which had developed separately for thousands of years. Which crops came originally from the Americas and spread around the world?",
       options: [
-        { text: "The Roman Empire, around the Mediterranean Sea" },
-        { text: "The Mongol Empire, across Asian grasslands" },
-        { text: "The Inca Empire, in what is now Peru" },
-        { text: "The Persian Empire, in what is now Iran" }
-      ],
-      correct: 2,
-      explanation: "The Inca Empire governed millions of people with khipu: cords whose knots and colours recorded numbers and possibly other information. Scholars are still studying them. The Spanish destroyed many after the conquest.",
-      whyItMatters: "We tend to assume that writing is the only way to keep records, yet Inca officials ran a huge empire with knotted cords. That matters today because it shows there are many ways to store information, just as computers store everything as zeros and ones. It also shows the cost of conquest: a great deal of knowledge was destroyed. That is a reminder to respect and protect other cultures’ ways of knowing, and researchers and Andean communities are still studying khipu today.",
-      inherited: "Only a fraction of khipus survive, so much of what Inca officials knew is lost."
-    },
-    {
-      id: 19,
-      era: "1492 onward",
-      question: "Which of these foods came from the Americas and spread around the world after 1492?",
-      options: [
-        { text: "Wheat, first farmed in the Middle East" },
-        { text: "The potato, first farmed in the Andes" },
-        { text: "Rice, first farmed in Asia" },
-        { text: "Olives, first grown around the Mediterranean" }
+        { text: "Wheat, rice and barley" },
+        { text: "Potatoes, maize and tomatoes" },
+        { text: "Coffee, bananas and sugar cane" }
       ],
       correct: 1,
       explanation: "Potatoes, maize, tomatoes, chillies and cocoa came from the Americas. Wheat, sugar and horses went the other way. The exchange was uneven: diseases such as smallpox killed huge numbers of Indigenous people, and sugar plantations relied on millions of enslaved Africans.",
@@ -759,44 +727,55 @@ canvas.confetti {
       inherited: "We inherited a shared global food supply, and also the harm done to Indigenous peoples and enslaved Africans in making it."
     },
     {
-      id: 20,
-      era: "1980 CE",
-      question: "Which disease is the only one humans have completely wiped out, as declared in 1980, after a worldwide vaccination campaign?",
+      id: 19,
+      era: "c. 1550–1700",
+      question: "By then, printing, trade and learned societies were changing how people studied nature. Which countries were at the heart of the “Scientific Revolution” of telescopes, microscopes and scientific societies?",
       options: [
-        { text: "Smallpox, once a deadly killer" },
-        { text: "Polio, which still exists in some countries" },
-        { text: "Measles, a very contagious virus" },
-        { text: "The flu, which changes every year" }
+        { text: "Italy, the Netherlands, England and France" },
+        { text: "Japan, Korea and China, in East Asia" },
+        { text: "Brazil, Mexico and Peru, in the Americas" }
       ],
       correct: 0,
-      explanation: "A World Health Organization campaign (1967–1977) ended natural smallpox, and eradication was declared in 1980. The idea of inoculation is older: it was practised in China, India, Africa and the Ottoman world long before Jenner’s cowpox vaccine of 1796. In 1721 Cotton Mather learned about it from an enslaved man named Onesimus.",
+      explanation: "Galileo in Italy pointed a telescope at the sky in 1609 and 1610. Lens makers and scientists in the Netherlands built early telescopes and microscopes. In England, Newton published his laws of motion in 1687 and the Royal Society was founded in 1660. In France, thinkers such as Descartes and Pascal worked on mathematics and physics, and the Académie des sciences was founded in 1666. Scientists in many other countries took part, and all of them built on Greek, Islamic-world, Indian and Chinese learning, so historians debate how “revolutionary” it was.",
+      whyItMatters: "Modern science still works the way it did then: make observations with instruments, publish the results, let others check them, and correct mistakes. Scientific journals, peer review and international collaboration all grew from this period. It is also why anyone with the right tools can check a scientific claim today, which is the basis for trusting science. And it shows how better tools, such as telescopes and microscopes, open up whole new questions.",
+      inherited: "We inherited a collective way of testing knowledge. Credit mostly went to a few named European men, while women, Indigenous peoples and enslaved experts who contributed were left out of the story."
+    },
+    {
+      id: 20,
+      era: "c. 1500–1980",
+      question: "The new science slowly began to change medicine. Where was inoculation against smallpox practised long before the first vaccine in 1796?",
+      options: [
+        { text: "Brazil and Argentina, in South America" },
+        { text: "Australia and New Zealand, in Oceania" },
+        { text: "China, India, Africa and the Ottoman Empire" }
+      ],
+      correct: 2,
+      explanation: "Variolation, giving a mild dose of smallpox on purpose to create immunity, was practised in China, India, Africa and the Ottoman Empire long before Edward Jenner’s cowpox vaccine of 1796. It was promoted in Britain by Lady Mary Wortley Montagu, and in Boston by Cotton Mather, who learned about it from an enslaved man named Onesimus (1721). A World Health Organization campaign (1967–1977) ended natural smallpox, and eradication was declared in 1980.",
       whyItMatters: "Vaccines protect you and your community, and smallpox shows that a disease can be beaten for good when countries cooperate. The same tools are used today against measles and polio, but where vaccination rates fall, diseases such as measles come back. The story also shows that medical knowledge came from many cultures, including enslaved people whose contributions were not credited at the time.",
       inherited: "We inherited vaccines, but gaps in vaccination and misinformation can bring diseases back."
     },
     {
       id: 21,
-      era: "c. 1760–1840 CE",
-      question: "In which country did the Industrial Revolution begin around 1760, with steam engines and cotton mills?",
+      era: "c. 1760",
+      question: "Science, coal and new machines then transformed how people worked. Which country led the first industrial revolution, built on steam engines and cotton mills?",
       options: [
-        { text: "France, with its royal factories" },
-        { text: "Japan, with its silk workshops" },
-        { text: "Italy, with its banking cities" },
-        { text: "Britain, with its coal and mills" }
+        { text: "France, with its royal glass factories" },
+        { text: "Britain, with its coal and mills" },
+        { text: "Japan, with its silk workshops" }
       ],
-      correct: 3,
+      correct: 1,
       explanation: "Coal-fired steam engines and mechanised mills began in Britain. The mills used cotton grown by enslaved people in the Americas, and factory work was often dangerous, including for children. Laws such as the Factory Act of 1833 began to limit child labour.",
       whyItMatters: "The factories, railways and electricity grids we depend on come from this period, and so does the habit of burning coal, oil and gas for energy. Today, those fuels are the main cause of climate change, so the revolution that made life richer also created one of our biggest problems. Rules such as limits on child labour and working hours exist because workers fought for them. And the cotton story reminds us that this wealth was tied to slavery.",
       inherited: "We inherited machines, higher productivity and labour protections won by workers."
     },
     {
       id: 22,
-      era: "1989 CE",
-      question: "Where was the World Wide Web invented in 1989?",
+      era: "1989",
+      question: "Factories, railways and telegraphs made information move faster and faster. Where was the World Wide Web invented, in 1989?",
       options: [
-        { text: "In Silicon Valley, at a young computer company" },
-        { text: "In Paris, in the basement of the Louvre museum" },
-        { text: "At the CERN research laboratory near Geneva" },
-        { text: "In Berlin, at a government computing office" }
+        { text: "In California, at a young computer company" },
+        { text: "In Germany, at a government computing office" },
+        { text: "In Switzerland, at the CERN laboratory" }
       ],
       correct: 2,
       explanation: "Tim Berners-Lee proposed the Web at CERN in 1989. In 1993 CERN made the Web’s software free for anyone to use. The Web runs on top of the Internet, which grew from the ARPANET (1969) and shared standards such as TCP/IP.",
@@ -805,16 +784,15 @@ canvas.confetti {
     },
     {
       id: 23,
-      era: "2020 CE",
-      question: "Which new kind of vaccine was first authorised against COVID-19 in December 2020?",
+      era: "2020",
+      question: "Over the next decades, the Web let scientists share data almost instantly. Which new kind of vaccine, built on decades of earlier research, was authorised in the UK and the United States in December 2020?",
       options: [
-        { text: "Vaccines made from cowpox, as in Jenner’s time" },
-        { text: "mRNA vaccines, built on decades of research" },
-        { text: "Antibiotic injections taken once a year" },
-        { text: "Vaccines made from dried smallpox scabs" }
+        { text: "mRNA vaccines, using genetic instructions" },
+        { text: "Vaccines made from cowpox, like Jenner’s" },
+        { text: "Antibiotic injections, taken once a year" }
       ],
-      correct: 1,
-      explanation: "Scientists in China shared the virus’s genetic sequence in January 2020, and mRNA vaccines were authorised in December, building on decades of research (including by Katalin Karikó and Drew Weissman). In 2021, rich countries vaccinated far faster than poor ones.",
+      correct: 0,
+      explanation: "Scientists in China shared the virus’s genetic sequence in January 2020, and mRNA vaccines were authorised in the UK and the United States in December 2020, building on decades of research, including work by Katalin Karikó and Drew Weissman. Other types of vaccine were also authorised around then in other countries, including China and Russia. In 2021, rich countries vaccinated far faster than poor ones.",
       whyItMatters: "The speed of the COVID-19 vaccines came from decades of earlier research and from scientists openly sharing data, not from a sudden miracle. Researchers are now testing mRNA technology against other diseases, and that work is still ongoing. But the vaccines reached rich countries far sooner than poor ones, so fairness and trust in science are still very much alive as questions. The lesson of this whole quiz is that knowledge builds on knowledge, and what we do with it is a choice.",
       inherited: "This quiz has traced one thread: knowledge builds on knowledge, and each generation inherits both tools and responsibilities."
     }
@@ -1238,7 +1216,87 @@ canvas.confetti {
       circ(340, 44, 15, "fr") + spikes);
   };
 
-  var api = { render: function (id) { return ART[id] ? ART[id]() : ""; }, ids: function () { return Object.keys(ART).map(Number); } };
+  /* 101 Hunter-gatherers */
+  ART[101] = function () {
+    var stars = rep(26, function (i) { return circ(((i * 97) % 380) + 10, ((i * 53) % 90) + 8, i % 4 === 0 ? 1.8 : 1.1, "fb o7"); });
+    var person = function (x, y, s) {
+      return '<g transform="translate(' + x + " " + y + ") scale(" + s + ')">' + circ(0, -30, 6, "fb") + path("M-7 -22 L7 -22 L10 6 L-10 6 Z", "fm") + line(-6, 6, -8, 24, "sm", 3) + line(6, 6, 8, 24, "sm", 3) + "</g>";
+    };
+    var flame = path("M226 160 Q214 136 230 116 Q232 134 246 144 Q252 156 242 160 Z", "fz") + path("M229 160 Q224 146 232 136 Q236 148 240 160 Z", "fr");
+    return svg("People gathered around a campfire at night, next to a cave with a painted animal and handprints on its wall",
+      rect(0, 0, W, H, "fi") + stars + circ(350, 44, 16, "fm") + circ(356, 40, 14, "fi") +
+      rect(0, 160, 400, 40, "fp") + path("M0 162 L0 58 Q44 14 96 62 L106 162 Z", "fl") +
+      path("M18 162 L18 96 Q54 62 86 96 L86 162 Z", "fi") +
+      ell(52, 132, 19, 10, "fr") + ell(34, 126, 7, 6, "fr") + path("M30 120 l-3 -8 M36 120 l1 -8", "sr", 'stroke-width="2"') +
+      line(40, 140, 40, 154, "sr", 3) + line(64, 140, 64, 154, "sr", 3) +
+      circ(70, 108, 3, "fr o7") + circ(76, 112, 3, "fr o7") + circ(64, 112, 3, "fr o7") +
+      line(214, 162, 252, 154, "sn", 5) + line(214, 154, 252, 162, "sn", 5) + grp("pulse", "", flame) +
+      person(180, 160, 0.9) + person(278, 160, 0.9) + person(320, 160, 0.8) + line(336, 120, 332, 164, "sn", 2));
+  };
+
+  /* 103 First city */
+  ART[103] = function () {
+    var houses = rep(5, function (i) {
+      var x = 22 + i * 30; return rect(x, 146, 22, 16, "fa") + rect(x + 8, 152, 6, 10, "fd");
+    }) + rep(5, function (i) {
+      var x = 238 + i * 30; return rect(x, 146, 22, 16, "fa") + rect(x + 8, 152, 6, 10, "fd");
+    });
+    var palm = function (x) { return line(x, 162, x + 2, 124, "sn", 3) + circ(x - 8, 124, 8, "fg") + circ(x + 10, 122, 8, "fg") + circ(x + 2, 114, 8, "fg"); };
+    return svg("A stepped temple tower rising above the flat-roofed houses of an early city beside a river",
+      bg() + circ(70, 44, 22, "fz") +
+      rect(0, 160, 400, 18, "fp") + rect(0, 178, 400, 22, "ft o6") +
+      path("M-10 188 q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0", "sb o4") +
+      rect(136, 140, 128, 20, "fa") + rect(152, 120, 96, 20, "fa") + rect(168, 100, 64, 20, "fa") + rect(184, 80, 32, 20, "fa") + rect(191, 64, 18, 16, "fb") +
+      path("M196 160 L204 160 L210 80 L190 80 Z", "fn o6") + houses + palm(120) + palm(300) +
+      path("M300 190 L330 190 L324 198 L306 198 Z", "fn"));
+  };
+
+  /* 110 Records of the sky */
+  ART[110] = function () {
+    var stars = rep(34, function (i) { return circ(((i * 71) % 390) + 6, ((i * 37) % 110) + 6, i % 5 === 0 ? 1.9 : 1.1, "fb o7"); });
+    var wedges = rep(3, function (r) {
+      return rep(10, function (c) {
+        var x = 142 + c * 12, y = 148 + r * 13, k = (c + r) % 3, d;
+        if (k === 0) d = "M" + x + " " + y + " l8 1 l-8 4 z"; else if (k === 1) d = "M" + x + " " + y + " l2 8 l4 -8 z"; else d = "M" + x + " " + y + " l6 6 l-7 1 z";
+        return path(d, "fd");
+      });
+    });
+    return svg("A night sky with a crescent moon and wandering planets along a dotted path, above a clay tablet covered in small wedge marks",
+      rect(0, 0, W, H, "fi") + stars +
+      circ(70, 44, 20, "fb") + circ(80, 40, 18, "fi") +
+      path("M20 118 Q200 20 380 96", "sm", 'stroke-dasharray="4 7" stroke-width="1.5"') +
+      grp("pulse", "", circ(120, 80, 7, "fz")) + circ(208, 60, 5, "fr") + grp("pulse", "animation-delay:1s", circ(290, 62, 6, "fy")) + circ(352, 88, 4, "fm") +
+      rect(128, 138, 144, 52, "fa", 8) + wedges);
+  };
+
+  /* 111 Natural explanations */
+  ART[111] = function () {
+    var cols = rep(4, function (i) { return rect(40 + i * 28, 104, 12, 58, "fb"); });
+    var cloud = circ(250, 56, 24, "fm") + circ(280, 48, 28, "fm") + circ(312, 58, 22, "fm") + rect(240, 56, 84, 22, "fm", 11);
+    return svg("A thinker in a robe pointing at a storm cloud with lightning, beside the columns of a Greek temple",
+      bg() + path("M30 104 L96 84 L162 104 Z", "fm") + rect(30, 104, 132, 8, "fb") + cols + rect(24, 162, 144, 8, "fl") +
+      cloud + path("M286 80 L274 108 L288 108 L276 136 L302 100 L288 100 L298 80 Z", "fz") +
+      rep(5, function (i) { return line(246 + i * 16, 90, 240 + i * 16, 112, "sm", 1.5).replace('class="sm"', 'class="sm" opacity=".5"'); }) +
+      rect(0, 170, 400, 30, "fp") +
+      circ(206, 120, 8, "fb") + path("M194 130 L218 130 L226 170 L186 170 Z", "fb o8") + line(214, 134, 244, 96, "sb", 3) + rect(180, 150, 12, 6, "fz", 2));
+  };
+
+  /* 119 Telescope */
+  ART[119] = function () {
+    var stars = rep(30, function (i) { return circ(((i * 83) % 390) + 6, ((i * 41) % 120) + 6, i % 6 === 0 ? 1.9 : 1.1, "fb o7"); });
+    return svg("A telescope on a wooden stand pointing at the Moon and a planet with four tiny moons, with an open book beside it",
+      rect(0, 0, W, H, "fi") + stars +
+      circ(318, 52, 30, "fm") + circ(308, 44, 5, "fl") + circ(328, 62, 7, "fl") + circ(324, 38, 3.5, "fl") +
+      circ(236, 40, 8, "fy") + circ(222, 38, 1.8, "fb") + circ(250, 42, 1.8, "fb") + circ(228, 52, 1.8, "fb") + circ(246, 30, 1.8, "fb") +
+      '<g transform="rotate(-38 150 120)">' + rect(80, 110, 150, 18, "fz", 4) + rect(214, 106, 20, 26, "fn", 3) + rect(76, 108, 8, 22, "fn", 2) + "</g>" +
+      line(134, 126, 104, 186, "sn", 5) + line(134, 126, 164, 186, "sn", 5) + line(134, 126, 134, 186, "sn", 5) +
+      rect(0, 186, 400, 14, "fp") + rect(200, 172, 54, 12, "fb", 2) + line(227, 172, 227, 184, "sd", 1.5));
+  };
+
+  // Which picture belongs to which question
+  var MAP = { 1: 101, 2: 1, 3: 103, 4: 2, 5: 3, 6: 4, 7: 5, 8: 7, 9: 6, 10: 110, 11: 111, 12: 9, 13: 11, 14: 13, 15: 14, 16: 16, 17: 17, 18: 19, 19: 119, 20: 20, 21: 21, 22: 22, 23: 23 };
+
+  var api = { render: function (id) { var k = MAP[id]; return k && ART[k] ? ART[k]() : ""; }, ids: function () { return Object.keys(MAP).map(Number); } };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.QuizArt = api;
 })(typeof window !== "undefined" ? window : this);
@@ -1249,7 +1307,7 @@ canvas.confetti {
  * Quiz application. No dependencies.
  *
  * How it works:
- *  - Each question has four plain answers.
+ *  - Each question has three plain answers.
  *  - A wrong answer is crossed out and the player tries again.
  *  - A correct answer reveals the explanation and earns the next letter of the
  *    secret sentence. Letters collect in a strip at the top of the page.
@@ -1263,8 +1321,8 @@ canvas.confetti {
   var QUESTIONS = window.QUIZ_QUESTIONS || [];
   var SECRET = window.QuizSecret;
   var TOTAL = 23;
-  var STORAGE_KEY = "what-we-inherited-progress-v2";
-  var LETTERS = ["A", "B", "C", "D"];
+  var STORAGE_KEY = "what-we-inherited-progress-v3";
+  var LETTERS = ["A", "B", "C"];
 
   var app = document.getElementById("app");
   var progressBox = document.getElementById("progress");
@@ -1308,9 +1366,9 @@ canvas.confetti {
       if (SECRET.getLetters().length !== TOTAL) return false;
       for (var i = 0; i < TOTAL; i++) {
         var q = QUESTIONS[i];
-        if (!q || !q.options || q.options.length !== 4) return false;
-        if (typeof q.correct !== "number" || q.correct < 0 || q.correct > 3) return false;
-        for (var k = 0; k < 4; k++) if (!q.options[k].text) return false;
+        if (!q || !q.options || q.options.length !== 3) return false;
+        if (typeof q.correct !== "number" || q.correct < 0 || q.correct > 2) return false;
+        for (var k = 0; k < 3; k++) if (!q.options[k].text) return false;
       }
       return true;
     } catch (e) {
@@ -1323,7 +1381,7 @@ canvas.confetti {
   function freshState() {
     var wrong = [];
     for (var i = 0; i < TOTAL; i++) wrong.push([]);
-    return { v: 2, phase: "welcome", index: 0, wrong: wrong };
+    return { v: 3, phase: "welcome", index: 0, wrong: wrong };
   }
 
   function loadState() {
@@ -1334,11 +1392,11 @@ canvas.confetti {
       var okPhase = ["welcome", "question", "feedback", "final"].indexOf(s.phase) !== -1;
       var okIndex = typeof s.index === "number" && s.index >= 0 && s.index < TOTAL && Math.floor(s.index) === s.index;
       var okWrong = Array.isArray(s.wrong) && s.wrong.length === TOTAL && s.wrong.every(function (list) {
-        return Array.isArray(list) && list.length <= 3 && list.every(function (n, pos) {
-          return typeof n === "number" && n >= 0 && n <= 3 && list.indexOf(n) === pos;
+        return Array.isArray(list) && list.length <= 2 && list.every(function (n, pos) {
+          return typeof n === "number" && n >= 0 && n <= 2 && list.indexOf(n) === pos;
         });
       });
-      if (s.v !== 2 || !okPhase || !okIndex || !okWrong) return freshState();
+      if (s.v !== 3 || !okPhase || !okIndex || !okWrong) return freshState();
       if (s.phase === "final" && s.index !== TOTAL - 1) return freshState();
       // A wrong list can never contain the correct answer.
       for (var i = 0; i < TOTAL; i++) if (s.wrong[i].indexOf(QUESTIONS[i].correct) !== -1) return freshState();
@@ -1717,13 +1775,13 @@ canvas.confetti {
     raf = requestAnimationFrame(frame);
   }
 
-  /* ---------- Keyboard shortcuts: A-D or 1-4 pick an option ---------- */
+  /* ---------- Keyboard shortcuts: A-C or 1-3 pick an option ---------- */
 
   document.addEventListener("keydown", function (e) {
     if (state.phase !== "question" || e.ctrlKey || e.metaKey || e.altKey) return;
     var key = e.key.toUpperCase();
     var idx = LETTERS.indexOf(key);
-    if (idx === -1 && key >= "1" && key <= "4") idx = parseInt(key, 10) - 1;
+    if (idx === -1 && key >= "1" && key <= "3") idx = parseInt(key, 10) - 1;
     if (idx === -1) return;
     var input = document.getElementById("choice-" + idx);
     if (input && !input.disabled) {
