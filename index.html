@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>What We Inherited: a journey through human history</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#app">Skip to the quiz</a>
+
+  <header class="site-header">
+    <p class="site-title">What We Inherited</p>
+    <div id="progress" class="progress" hidden>
+      <div class="progress-label">
+        <span id="progress-text">Question 1 of 23</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </div>
+    <div id="letters" class="letters" hidden></div>
+  </header>
+
+  <main id="app" class="app" tabindex="-1"></main>
+
+  <noscript>
+    <p class="noscript">This quiz needs JavaScript to run. Please turn it on in your browser and reload the page.</p>
+  </noscript>
+
+  <script src="js/questions.js"></script>
+  <script src="js/secret.js"></script>
+  <script src="js/art.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
