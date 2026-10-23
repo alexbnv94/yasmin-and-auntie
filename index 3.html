@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex, nofollow">
+  <title>What We Inherited: a journey through human history</title>
+  <style>
+/*
+ * Palette: verdigris and bone, with a bronze accent (oxidised copper, the metal
+ * of the Bronze Age). Type: a book serif for headlines and dates, system sans
+ * for reading. No external fonts, so the page works offline.
+ */
+:root {
+  --ink: #0b2527;
+  --ink-2: #0f3033;
+  --panel: #143c3f;
+  --panel-2: #194a4d;
+  --line: #2b6064;
+  --bone: #eef1ea;
+  --mist: #a6c0bb;
+  --bronze: #e0ad56;
+  --bronze-ink: #2a1c05;
+  --right: #8fdcb0;
+  --right-bg: rgba(143, 220, 176, 0.12);
+  --wrong: #f0a08f;
+  --wrong-bg: rgba(240, 160, 143, 0.12);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--ink);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, #1d5a5d 0%, rgba(29, 90, 93, 0) 70%);
+  background-repeat: no-repeat;
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--bone);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  z-index: 10;
+}
+.skip:focus { left: 8px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Header and progress */
+.site-header {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 0;
+}
+.site-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--mist);
+  letter-spacing: 0.01em;
+}
+.progress { margin-top: 0.9rem; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--mist);
+  margin-bottom: 0.4rem;
+}
+.progress-track {
+  height: 8px;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--bronze);
+  border-radius: 999px;
+  transition: width 0.45s ease;
+}
+
+/* Layout */
+.app {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+  outline: none;
+}
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; }
+
+/* Buttons */
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  padding: 0.85rem 1.6rem;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background-color 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.btn-primary { background: var(--bronze); color: var(--bronze-ink); }
+.btn-primary:hover:not(:disabled) { background: #ecbd70; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-quiet { background: transparent; color: var(--bone); border-color: var(--line); }
+.btn-quiet:hover { border-color: var(--mist); }
+
+:focus-visible { outline: 3px solid var(--bronze); outline-offset: 3px; }
+
+/* Welcome */
+.welcome { padding-top: 3.5rem; }
+.welcome h1 {
+  font-size: clamp(2.6rem, 9vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.welcome .lead {
+  margin: 1.5rem 0 0;
+  max-width: 34rem;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3.6vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--bone);
+}
+.welcome .actions { margin-top: 2.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.welcome .note { margin: 1.5rem 0 0; max-width: 32rem; color: var(--mist); font-size: 0.95rem; }
+
+/* Question */
+.era {
+  margin: 0.5rem 0 0.25rem;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  color: var(--bronze);
+  line-height: 1.15;
+}
+.question {
+  font-size: clamp(1.25rem, 3.8vw, 1.55rem);
+  line-height: 1.4;
+  margin: 0 0 1.5rem;
+  outline: none;
+}
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.choices { display: grid; gap: 0.7rem; }
+
+.choice {
+  display: grid;
+  grid-template-columns: 2.1rem 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.95rem 1rem;
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.choice:hover { border-color: var(--mist); }
+.choice input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.choice .key {
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1.5px solid var(--mist);
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--mist);
+}
+.choice .body { display: block; padding-top: 0.15rem; }
+.choice .verdict {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.choice.is-selected { border-color: var(--bronze); background: var(--panel-2); }
+.choice.is-selected .key { background: var(--bronze); border-color: var(--bronze); color: var(--bronze-ink); }
+.choice input:focus-visible + .key { outline: 3px solid var(--bronze); outline-offset: 3px; }
+
+/* After submitting */
+.choices.is-locked .choice { cursor: default; }
+.choices.is-locked .choice:hover { border-color: var(--line); }
+.choice.is-correct { border-color: var(--right); background: var(--right-bg); }
+.choice.is-correct .key { background: var(--right); border-color: var(--right); color: var(--ink); }
+.choice.is-correct .verdict { color: var(--right); }
+.choice.is-wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+.choice.is-wrong .key { background: var(--wrong); border-color: var(--wrong); color: var(--ink); }
+.choice.is-wrong .verdict { color: var(--wrong); }
+.choice.is-dim { opacity: 0.6; }
+
+.actions-row { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.actions-row .btn { flex: 1 1 100%; }
+@media (min-width: 560px) { .actions-row .btn { flex: 0 0 auto; } }
+.final .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; }
+
+/* Feedback */
+.feedback {
+  margin-top: 1.75rem;
+  padding: 1.4rem 1.25rem 1.5rem;
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  outline: none;
+}
+.feedback .result { font-size: 1.5rem; margin-bottom: 0.75rem; }
+.feedback .result.right { color: var(--right); }
+.feedback .result.wrong { color: var(--wrong); }
+.feedback h3 { font-size: 1.15rem; margin: 1.25rem 0 0.35rem; color: var(--bronze); }
+.feedback p { margin: 0; max-width: 40rem; }
+.feedback .explain { margin-bottom: 0.25rem; }
+
+/* Final reveal */
+.final { padding-top: 2.5rem; text-align: center; }
+.reveal {
+  font-size: clamp(2rem, 8.4vw, 3.9rem);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  margin: 0 auto;
+  max-width: 14em;
+  outline: none;
+}
+.reveal .word { display: inline-block; white-space: nowrap; }
+.reveal .ch {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.reveal .ch.on { opacity: 1; transform: none; }
+.final .after {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  visibility: hidden;
+}
+.final .after.on { opacity: 1; transform: none; visibility: visible; }
+.final .tagline {
+  margin: 2.25rem auto 0;
+  max-width: 28rem;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--bronze);
+}
+.final .cheer {
+  margin: 0.75rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--bone);
+}
+.final .score { margin: 1.25rem 0 0; color: var(--mist); font-size: 0.95rem; }
+.final .actions { margin-top: 2rem; }
+
+canvas.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.noscript { max-width: 44rem; margin: 2rem auto; padding: 0 1.25rem; }
+
+.fallback { padding-top: 3rem; }
+.fallback h1 { font-size: 2rem; }
+.fallback p { color: var(--mist); }
+
+/* Letter strip and rewards */
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin-top: 0.9rem;
+}
+.letters[hidden] { display: none; }
+.tiles { display: inline-flex; gap: 0.25rem; }
+.tile {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 2rem;
+  border-radius: 6px;
+  border: 1.5px dashed var(--line);
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--bronze-ink);
+}
+.tile.has { background: var(--bronze); border: 1.5px solid var(--bronze); }
+.tile.fresh { animation: tile-pop 0.6s ease-out; }
+@keyframes tile-pop { 0% { transform: scale(0.4); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+
+@media (max-width: 480px) {
+  .letters { gap: 0.3rem 0.6rem; }
+  .tiles { gap: 0.15rem; }
+  .tile { width: 1.2rem; height: 1.6rem; font-size: 0.9rem; border-radius: 4px; }
+}
+
+.try-again {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--wrong);
+  border-radius: var(--radius);
+  background: var(--wrong-bg);
+  color: var(--bone);
+  outline: none;
+}
+
+.reward {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.1rem;
+  background: var(--right-bg);
+  border: 1.5px solid var(--right);
+  border-radius: var(--radius);
+}
+.reward-tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 4rem;
+  border-radius: 8px;
+  background: var(--bronze);
+  color: var(--bronze-ink);
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  animation: tile-pop 0.7s ease-out;
+}
+.reward-title { margin: 0; font-family: var(--serif); font-size: 1.3rem; color: var(--right); line-height: 1.25; }
+.reward-sub { margin: 0.2rem 0 0; font-size: 0.95rem; color: var(--mist); }
+
+/* Illustrations (see js/art.js) */
+.art {
+  margin: 0.5rem 0 1.25rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel-2);
+}
+.art svg { display: block; width: 100%; height: auto; stroke-width: 2; }
+.art .fb { fill: var(--bone); }
+.art .fz { fill: var(--bronze); }
+.art .fm { fill: var(--mist); }
+.art .fp { fill: var(--panel); }
+.art .fq { fill: var(--panel-2); }
+.art .fq2 { fill: #214f52; }
+.art .fl { fill: var(--line); }
+.art .fg { fill: var(--right); }
+.art .fi { fill: var(--ink); }
+.art .fr { fill: #e0705c; }
+.art .fy { fill: #e8c15a; }
+.art .fn { fill: #a8774a; }
+.art .ft { fill: #2f7f84; }
+.art .fa { fill: #c9a56e; }
+.art .fd { fill: #6b4c26; }
+.art .fs { fill: #b6c4c1; }
+.art .sb, .art .sz, .art .sm, .art .sl, .art .sg, .art .sr, .art .st, .art .sy, .art .sn, .art .sd {
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.art .sb { stroke: var(--bone); }
+.art .sz { stroke: var(--bronze); }
+.art .sm { stroke: var(--mist); }
+.art .sl { stroke: var(--line); }
+.art .sg { stroke: var(--right); }
+.art .sr { stroke: #e0705c; }
+.art .st { stroke: #2f7f84; }
+.art .sy { stroke: #e8c15a; }
+.art .sn { stroke: #a8774a; }
+.art .sd { stroke: #5b4020; }
+.art .so { stroke: var(--line); stroke-width: 3; }
+.art .tx { font-family: var(--serif); font-weight: 600; }
+.art .o2 { opacity: .2; } .art .o3 { opacity: .3; } .art .o4 { opacity: .4; } .art .o5 { opacity: .5; }
+.art .o6 { opacity: .6; } .art .o7 { opacity: .7; } .art .o8 { opacity: .8; } .art .o9 { opacity: .9; }
+
+.art .sway, .art .sway2, .art .drift, .art .rise, .art .spin, .art .spin2, .art .pulse { transform-box: fill-box; }
+.art .sway { transform-origin: 50% 100%; animation: art-sway 3.6s ease-in-out infinite alternate; }
+.art .sway2 { animation: art-bob 2.2s ease-in-out infinite alternate; }
+.art .drift { animation: art-drift 7s linear infinite; }
+.art .flow { animation: art-flow 2.4s linear infinite; }
+.art .rise { transform-origin: center; animation: art-rise 3.6s ease-out infinite; }
+.art .spin { transform-origin: center; animation: art-spin 30s linear infinite; }
+.art .spin2 { transform-origin: center; animation: art-spin 24s linear infinite reverse; }
+.art .pulse { transform-origin: center; animation: art-pulse 2.4s ease-in-out infinite; }
+@keyframes art-sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
+@keyframes art-bob { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+@keyframes art-drift { from { transform: translateX(0); } to { transform: translateX(-80px); } }
+@keyframes art-flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -32; } }
+@keyframes art-rise { 0% { transform: translateY(0); opacity: .6; } 100% { transform: translateY(-36px); opacity: 0; } }
+@keyframes art-spin { to { transform: rotate(360deg); } }
+@keyframes art-pulse { 0%, 100% { transform: scale(0.85); } 50% { transform: scale(1.3); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal .ch { opacity: 1; transform: none; }
+  .final .after { opacity: 1; transform: none; visibility: visible; }
+}
+
+</style>
+</head>
+<body>
+  <a class="skip" href="#app">Skip to the quiz</a>
+
+  <header class="site-header">
+    <p class="site-title">What We Inherited</p>
+    <div id="progress" class="progress" hidden>
+      <div class="progress-label">
+        <span id="progress-text">Question 1 of 23</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </div>
+    <div id="letters" class="letters" hidden></div>
+  </header>
+
+  <main id="app" class="app" tabindex="-1"></main>
+
+  <noscript>
+    <p class="noscript">This quiz needs JavaScript to run. Please turn it on in your browser and reload the page.</p>
+  </noscript>
+
+  <script>
+/*
+ * Quiz content. Edit freely, then run `node scripts/validate.js`.
+ *
+ * Each question has exactly three options. `correct` is the index (0-2) of the
+ * right one. The letters the player earns live in secret.js, not here: a correct
+ * answer to question N reveals letter N of the final message.
+ */
+(function (root) {
+  "use strict";
+
+  var QUESTIONS = [
+    {
+      id: 1,
+      era: "from c. 300,000 years ago",
+      question: "Our own species, Homo sapiens, is about 300,000 years old. Where do the oldest known remains of our species come from?",
+      options: [
+        { text: "Europe, in France and Spain" },
+        { text: "East Asia, in China and Indonesia" },
+        { text: "Africa, in Morocco and Ethiopia" }
+      ],
+      correct: 2,
+      explanation: "The oldest known Homo sapiens fossils come from Africa: Jebel Irhoud in Morocco (about 300,000 years old) and Omo Kibish in Ethiopia (more than 230,000 years old). Our species later spread to every continent except Antarctica. Many scientists think different groups across Africa all contributed to our species, rather than one single starting place, and new finds can still change the dates.",
+      whyItMatters: "Every person alive today belongs to the same species, with the same basic abilities and a common ancestry. Everything in this quiz, from farming to the internet, was done by people with minds like ours. It also shows how knowledge of the distant past gets revised: new fossils and new dating methods keep changing the picture, so “earliest known” always means “earliest found so far”.",
+      inherited: "We inherited language, tools, fire and art from hunter-gatherer ancestors, who lived this way for most of our species’ history."
+    },
+    {
+      id: 2,
+      era: "from c. 11,000 years ago",
+      question: "For almost all of that time, people lived as hunters and gatherers, moving with the seasons. Then, about 11,000 years ago, some groups began to plant crops and keep animals. Where did people begin farming on their own, without learning it from anyone else?",
+      options: [
+        { text: "Scandinavia, Siberia and Patagonia" },
+        { text: "The Middle East, China and Mesoamerica" },
+        { text: "Britain, France and Spain, in western Europe" }
+      ],
+      correct: 1,
+      explanation: "Farming began separately in several parts of the world. In the Fertile Crescent of the Middle East, people farmed wheat, barley and sheep about 11,000 years ago. Rice and millet followed in China, and maize and squash in Mesoamerica. Farming also arose independently in the Andes, New Guinea, parts of Africa and eastern North America, and some regions adopted it from their neighbours.",
+      whyItMatters: "Almost everything on your plate began with early farmers. Wheat, barley, rice, maize and potatoes still feed most of the world, so bread, pasta and rice dishes all trace back to these first crops. Farming also let people stay in one place, store food and build towns, which is why cities, jobs and governments exist at all. Today, climate change is putting those same crops under pressure, and scientists look to older, more varied crop types and seed banks to find plants that can cope with heat and drought.",
+      inherited: "We inherited thousands of crop varieties, but many are disappearing as farms rely on fewer types."
+    },
+    {
+      id: 3,
+      era: "c. 3500 BCE",
+      question: "Farming meant food could be stored, and villages grew into towns. Where did the first real cities grow up, around 5,500 years ago?",
+      options: [
+        { text: "Southern Mesopotamia and Elam, in today’s Iraq and Iran" },
+        { text: "Northern Europe, in what are now Britain, Germany and Denmark" },
+        { text: "The Amazon and Congo river basins, in South America and Africa" }
+      ],
+      correct: 0,
+      explanation: "By about 3500 BCE, Uruk in southern Mesopotamia had grown into a city of many thousands of people, with temples, workshops and officials. Susa, in neighbouring Elam (in today’s Iran), grew at about the same time. Irrigation from the Tigris and Euphrates rivers fed them. Earlier large settlements such as Çatalhöyük in Turkey existed, but historians usually call them towns because they lacked the same specialised jobs and institutions.",
+      whyItMatters: "Most people today live in cities, and the same challenges first appeared in these early ones: food and water for many people, rules for living together, and unequal wealth. Early cities created jobs and institutions that still exist, such as scribes, builders, traders and administrations. They are also where new ideas meet and spread, which is why so many inventions in this quiz came from urban places. And they are still fragile: they depend on farms and water far outside their walls, as Uruk did.",
+      inherited: "We inherited the idea of living together in large numbers, with specialists, markets and shared institutions. We also inherited the inequalities that came with them."
+    },
+    {
+      id: 4,
+      era: "from c. 3300 BCE",
+      question: "Big cities had to keep track of grain, workers and taxes, and memory was not enough. Which regions invented writing on their own, without copying another writing system?",
+      options: [
+        { text: "Mesopotamia, China and Mesoamerica" },
+        { text: "Greece, Rome and Phoenicia, around the Mediterranean" },
+        { text: "Britain, Germany and Scandinavia" }
+      ],
+      correct: 0,
+      explanation: "Writing was invented independently at least three times. In Mesopotamia (about 3300 BCE) scribes pressed wedge-shaped signs into clay to record grain, animals and workers. In China, the oldest surviving writing dates from about 1250 BCE. In Mesoamerica, writing appeared by about 600 BCE. Egypt developed hieroglyphs around 3200 BCE, and historians still debate whether it was fully independent of Mesopotamia.",
+      whyItMatters: "Whenever you sign a contract, pay a bill or check a bank statement, you rely on the idea invented here: a lasting record that does not depend on anyone’s memory. The first tablets were about grain and workers, which shows that writing began as a tool for running an economy, not for poetry. Today, records still decide who owns what and who owes what. Digital files can disappear faster than clay ever did, so keeping records safe is still a real problem for archives, companies and families.",
+      inherited: "Clay lasts for thousands of years. Writing on wood or cloth mostly rotted away, so we know some peoples much better than others."
+    },
+    {
+      id: 5,
+      era: "c. 2560 BCE",
+      question: "Cities and records let rulers organise huge projects. In Egypt, around 4,500 years ago, the Great Pyramid of Giza was built. Who did the work, according to archaeology?",
+      options: [
+        { text: "Enslaved foreign captives, forced to work under overseers’ whips" },
+        { text: "Organised Egyptian work crews, fed and housed by the state" },
+        { text: "Volunteers from across the Mediterranean, in one summer" }
+      ],
+      correct: 1,
+      explanation: "Archaeologists found workers’ towns, bakeries and graves near the pyramids. They show organised crews of skilled builders and rotating labourers, not mainly slaves as films suggest.",
+      whyItMatters: "Big projects still depend on the same things: food, shelter, tools, planning and managers. The pyramid evidence shows how a state organised a large workforce, the same skill behind modern building sites, hospitals and supply chains. It also shows why checking the evidence matters. The film image of slaves under whips turned out to be wrong, and historians corrected it by digging. Today, the same habit of asking “what is the evidence?” helps us spot false stories online.",
+      inherited: "We know the pharaoh’s name but almost none of the workers’ names, which is why their homes and graves matter."
+    },
+    {
+      id: 6,
+      era: "c. 2600–1900 BCE",
+      question: "At the same time, in another river valley, people built planned cities with straight streets and drains. We still cannot read their writing. Which river valley was it?",
+      options: [
+        { text: "The Tigris and Euphrates, in Iraq and Syria" },
+        { text: "The Yellow River, in China" },
+        { text: "The Indus, in today’s Pakistan and India" }
+      ],
+      correct: 2,
+      explanation: "The Indus Valley civilization (cities such as Harappa and Mohenjo-daro) had planned streets, brick houses, drains and standard weights. Thousands of short inscriptions survive, but nobody has been able to read them.",
+      whyItMatters: "Clean water and working drains are still what keep cities healthy: when they fail, diseases such as cholera come back quickly. The Indus cities show that people understood this about 4,500 years ago. They also used standard weights, the same idea behind kilograms and metres today, which lets strangers trade fairly. And the unreadable script is a reminder that we only know a society through what happens to survive.",
+      inherited: "We inherited ideas about city planning, but we lost their language, so we cannot hear their own story."
+    },
+    {
+      id: 7,
+      era: "c. 1754 BCE",
+      question: "As states grew, rulers wrote their laws down for everyone to see. About 3,750 years ago, one famous king had his laws carved on a tall stone pillar. Who was he?",
+      options: [
+        { text: "Hammurabi, king of Babylon" },
+        { text: "Sargon of Akkad, king of Mesopotamia" },
+        { text: "Cyrus the Great, king of Persia" }
+      ],
+      correct: 0,
+      explanation: "King Hammurabi’s laws, carved around 1754 BCE, are the best-known law collection from ancient Mesopotamia. Older collections exist, and punishments depended on social class: free people, commoners and enslaved people were treated differently.",
+      whyItMatters: "Whenever a court applies a written law, or you read the terms of a contract, you meet the idea that rules should be public so that everyone can know them. Hammurabi’s pillar was put on display for exactly that reason. But his laws punished people differently depending on their class, which is a reminder that written rules are only fair if they apply to everyone equally. Today’s debates about equal justice are still about this same question.",
+      inherited: "We inherited written law. Equal treatment for everyone took thousands of years more and is still unfinished."
+    },
+    {
+      id: 8,
+      era: "c. 1250 BCE",
+      question: "Long after Mesopotamia, writing was invented again, independently, far away in China. What was the earliest substantial Chinese writing used for?",
+      options: [
+        { text: "Recording taxes on paper sheets, kept in government offices" },
+        { text: "Copying poems on silk scrolls, for the royal court’s libraries" },
+        { text: "Asking ancestors questions, carved on turtle shells and ox bones" }
+      ],
+      correct: 2,
+      explanation: "Shang kings heated bones and shells until they cracked, then carved the question and sometimes the answer. Tens of thousands of fragments have been found. This script developed into modern Chinese characters, and it grew up separately from Mesopotamia.",
+      whyItMatters: "Chinese writing is still used every day by hundreds of millions of people, which makes it one of the oldest writing systems in continuous use. Because the characters keep their meaning across different spoken varieties, people who speak very differently can still read the same message. It also shows that writing was invented more than once, in different places, so history is not the story of one culture teaching everyone else.",
+      inherited: "Because the characters keep their meaning across spoken varieties, writing helped link people who spoke very differently."
+    },
+    {
+      id: 9,
+      era: "c. 1000 BCE",
+      question: "Early scripts needed hundreds of signs, which made them hard to learn. About 3,000 years ago, a much simpler system of a few dozen letters spread around the Mediterranean through trade. Which seafaring traders spread it?",
+      options: [
+        { text: "The Minoans of Crete, in the Aegean Sea" },
+        { text: "The Phoenicians, from what is now Lebanon" },
+        { text: "The Egyptians, along the Nile in Africa" }
+      ],
+      correct: 1,
+      explanation: "Phoenician traders carried a simple alphabet of about 22 letters, all consonants, to ports around the Mediterranean. The Greeks added vowels, and our own letters descend from theirs. Earlier alphabet signs were made by Semitic-speaking workers in Egypt and Sinai, who adapted Egyptian symbols.",
+      whyItMatters: "You are reading this in an alphabet that comes from this chain of workers, traders and scribes. Because an alphabet needs only a few dozen signs, far more people could learn to read and write, and that helped spread trade, literacy and ideas. The same idea sits on your phone keyboard today: a few dozen letters are enough to write anything. It also shows that borrowing and adapting from other cultures is how most inventions happen.",
+      inherited: "We inherited the letters you are reading now, shaped by Egyptians, Phoenicians, Greeks and Romans."
+    },
+    {
+      id: 10,
+      era: "c. 1200–500 BCE",
+      question: "Writing meant that people could keep records for centuries, including records of the sky. Where were the earliest long-running written records of eclipses and planets kept?",
+      options: [
+        { text: "Babylonia, in Iraq, and China" },
+        { text: "Greece and Italy, around the Mediterranean" },
+        { text: "Egypt and Ethiopia, along the Nile" }
+      ],
+      correct: 0,
+      explanation: "Chinese diviners recorded eclipses on oracle bones from about 1200 BCE, and Chinese astronomers kept records for the next two thousand years. In Babylon, scribes kept nightly diaries of the Moon, planets and weather from about 650 BCE, continuing for more than six centuries. Later Greek astronomers used the Babylonian records to find patterns such as the cycle of eclipses. Egyptians watched the stars too, mainly for calendars and rituals, but their surviving records are less continuous.",
+      whyItMatters: "Long records are how science finds patterns that no single lifetime can see. Today, climate scientists use old weather diaries and ship logs in the same way, and astronomers still use ancient eclipse records to measure how Earth’s rotation has slowed over thousands of years. It also shows why keeping data matters, even before you know what it will be used for.",
+      inherited: "We inherited the habit of recording observations patiently and checking them against each other. Most of the records are lost, and what survives is mostly on clay tablets and bones."
+    },
+    {
+      id: 11,
+      era: "from c. 600 BCE",
+      question: "Long records of the sky showed that nature follows patterns. Where did thinkers begin explaining storms, earthquakes and the stars by natural causes rather than by gods?",
+      options: [
+        { text: "Rome and Carthage, in what are now Italy and Tunisia" },
+        { text: "Egypt and Nubia, along the River Nile" },
+        { text: "Greek cities, in what are now Turkey and Greece" }
+      ],
+      correct: 2,
+      explanation: "Around 600 BCE, thinkers in Miletus, a Greek city on the coast of today’s Turkey, such as Thales and Anaximander, argued that natural events have natural causes. Their followers developed arguments, proofs and the study of anatomy. Similar ideas appeared elsewhere around the same time, for example in ancient India and China, so this was not one single starting point, and the Greeks also learned a lot from Egyptian and Babylonian knowledge.",
+      whyItMatters: "Asking “what is the natural cause of this?” and arguing about the evidence is the basis of modern science and medicine. It still shapes how we deal with disease, weather and disasters. It does not mean that people elsewhere did not ask questions, only that explanations based on observation and argument became a recognised way to think.",
+      inherited: "We inherited a way of asking questions and arguing with evidence. Much of Greek writing survives only because it was copied and translated later, including in Baghdad."
+    },
+    {
+      id: 12,
+      era: "c. 508 BCE",
+      question: "This new habit of asking questions and arguing about answers also shaped politics. Which ancient city is famous for letting male citizens vote directly on laws in a public assembly?",
+      options: [
+        { text: "Sparta, in southern Greece" },
+        { text: "Athens, on the coast of Greece" },
+        { text: "Babylon, in Mesopotamia" }
+      ],
+      correct: 1,
+      explanation: "Athens developed direct democracy after the reforms of Cleisthenes (508 BCE). Only adult male citizens could take part; women, enslaved people and most foreigners were excluded.",
+      whyItMatters: "Voting, juries and public debate are still how many countries make decisions, and the word “democracy” comes from Greek. But Athens left out women, enslaved people and foreigners, so the story is also about who gets included. In most countries women won the vote only in the last 100 to 150 years. Today’s arguments about who can vote, and whose voice counts, continue this very old discussion.",
+      inherited: "We inherited the idea that ordinary people can take part in government, and a long struggle to include everyone."
+    },
+    {
+      id: 13,
+      era: "from c. 130 BCE",
+      question: "Meanwhile, trade and empires connected far-apart places. Which regions did the Silk Road trade routes link?",
+      options: [
+        { text: "China, Central Asia, India and the Mediterranean" },
+        { text: "Mexico, Peru and Bolivia, in the Americas" },
+        { text: "Scandinavia, Iceland and Greenland, in northern Europe" }
+      ],
+      correct: 0,
+      explanation: "The Silk Road was a web of land and sea routes, not one road. Silk, spices, glass and metal travelled along it, and so did ideas such as Buddhism (from India to China), technologies such as papermaking (from China westward), and diseases.",
+      whyItMatters: "Globalisation is not new. Today’s world trade, from shipping containers to online shopping, continues a chain of exchange that is thousands of years old. Ideas, religions and skills travelled along these routes, and so did diseases, which is why modern airports and health agencies keep track of outbreaks. Understanding that cultures have always mixed helps us see that most traditions, foods and technologies have mixed origins.",
+      inherited: "We inherited foods, crafts and religions shaped by many cultures. The same routes also carried disease and the trade in enslaved people."
+    },
+    {
+      id: 14,
+      era: "628 CE",
+      question: "Along those routes, ideas travelled as well as goods. In 628 CE, a famous book set out rules for calculating with zero. Where was it written?",
+      options: [
+        { text: "Ancient Rome, in Italy" },
+        { text: "Medieval England, near Oxford" },
+        { text: "India, in South Asia" }
+      ],
+      correct: 2,
+      explanation: "In 628 CE the Indian mathematician Brahmagupta wrote rules for adding, subtracting and multiplying with zero. Zero had been used earlier as a placeholder in Babylonian and Maya numbers. Through scholars in the Islamic world, the idea reached Europe.",
+      whyItMatters: "Zero is built into your daily life: bank balances, temperatures, phone numbers and computers all use it. Computers work with only 0 and 1, so every photo, message and video you send is a long string of zeros and ones. Without zero and place value, modern maths and digital technology would not work. The journey from India through the Arab world to Europe also shows how knowledge travels by translation and trade.",
+      inherited: "Our “Hindu-Arabic” numerals are named after two of the cultures that built them and passed them on."
+    },
+    {
+      id: 15,
+      era: "c. 800–1020 CE",
+      question: "Zero and Indian numbers travelled west. Where did scholars bring together Greek, Persian and Indian knowledge and add algebra and experimental optics?",
+      options: [
+        { text: "Paris and London, in France and England" },
+        { text: "Baghdad and Cairo, in Iraq and Egypt" },
+        { text: "Constantinople and Athens, in Turkey and Greece" }
+      ],
+      correct: 1,
+      explanation: "In Baghdad, from about 800 CE, rulers and wealthy patrons paid scholars to translate Greek, Persian and Indian works into Arabic and to add new ideas. Al-Khwarizmi wrote his book on al-jabr there (about 820 CE), which gave us the word “algebra”, and “algorithm” comes from a Latin form of his name. In Cairo, Ibn al-Haytham (about 1011–1021 CE) tested ideas about light with experiments and wrote the Book of Optics.",
+      whyItMatters: "Algebra is how engineers design bridges, doctors work out doses and apps calculate routes. The word “algorithm” now describes the step-by-step instructions behind search results, social media feeds and AI. Knowing where these words come from shows that scientific knowledge was built by translating and improving each other’s work across languages and religions. It also reminds us that scholars in the Islamic world preserved and extended learning that later helped Europe. Testing ideas with experiments, as Ibn al-Haytham did, is also how modern science works.",
+      inherited: "Some Greek works survive today only through Arabic translations. The story shows that maths and science were built by many cultures, not one."
+    },
+    {
+      id: 16,
+      era: "868–1450 CE",
+      question: "More books and more readers meant people needed cheaper ways to make and copy texts. Where did paper, printing from blocks and movable type first appear?",
+      options: [
+        { text: "China and Korea, in East Asia" },
+        { text: "Germany and the Netherlands" },
+        { text: "Italy and Spain, in southern Europe" }
+      ],
+      correct: 0,
+      explanation: "Paper was made in China from about the 2nd century BCE. The oldest dated printed book, the Diamond Sutra (868 CE), was printed in China from carved wooden blocks. China had movable clay type in the 1000s, and the Korean Jikji was printed with metal type in 1377. Papermaking travelled west through Central Asia and the Islamic world, reaching Spain and Italy in the 1100s and 1200s, and Gutenberg’s press (about 1450) came later and spread quickly in Europe.",
+      whyItMatters: "Paper made writing cheap, and printing made copying cheap, so schools, newspapers, books and offices became possible. The internet is today’s printing press: it spreads information quickly and cheaply, for better and for worse. Printing spread science, news and education, and also propaganda and rumours, the same trade-off we see on social media. The East Asian story reminds us that important inventions often happened outside Europe and were left out of popular stories.",
+      inherited: "The story of one lone inventor hides centuries of work in East Asia and the Islamic world."
+    },
+    {
+      id: 17,
+      era: "from c. 1300 CE",
+      question: "While printing spread in East Asia, learning flourished in Africa too. Where did a rich gold-and-salt trading empire build a famous centre of scholarship, with libraries full of manuscripts?",
+      options: [
+        { text: "Great Zimbabwe, in Zimbabwe" },
+        { text: "Kilwa, on the coast of Tanzania" },
+        { text: "Timbuktu, in Mali, West Africa" }
+      ],
+      correct: 2,
+      explanation: "The Mali Empire grew rich on gold and salt trade. Timbuktu’s mosques and private libraries held thousands of manuscripts on law, astronomy, medicine and mathematics, in Arabic and local languages. The same trade networks also sold enslaved people.",
+      whyItMatters: "Popular images of Africa’s past often leave out its scholars. Timbuktu shows that West Africa had libraries, law and science centuries ago. Today, projects to protect and digitise old manuscripts help keep that history alive, and they change how we see the region now: as a place with a long tradition of learning. The rescue of manuscripts in 2012 and 2013 also shows that ordinary people can protect culture in a crisis.",
+      inherited: "In 2012–13 librarians smuggled many manuscripts to safety during conflict, though some were destroyed."
+    },
+    {
+      id: 18,
+      era: "from 1492",
+      question: "In 1492, European ships linked the Old World with the Americas, which had developed separately for thousands of years. Which crops came originally from the Americas and spread around the world?",
+      options: [
+        { text: "Wheat, rice and barley" },
+        { text: "Potatoes, maize and tomatoes" },
+        { text: "Coffee, bananas and sugar cane" }
+      ],
+      correct: 1,
+      explanation: "Potatoes, maize, tomatoes, chillies and cocoa came from the Americas. Wheat, sugar and horses went the other way. The exchange was uneven: diseases such as smallpox killed huge numbers of Indigenous people, and sugar plantations relied on millions of enslaved Africans.",
+      whyItMatters: "Italian tomato sauce, Irish and German potato dishes, Indian and Thai chillies and chocolate everywhere all come from the Americas. Today’s global food supply depends on this exchange. It also helps explain why the Americas, Africa and Europe are so closely linked in culture and population, and why discussions about colonisation, Indigenous rights and the legacy of slavery are still alive. And it showed how quickly disease can cross oceans, something we saw again in modern pandemics.",
+      inherited: "We inherited a shared global food supply, and also the harm done to Indigenous peoples and enslaved Africans in making it."
+    },
+    {
+      id: 19,
+      era: "c. 1550–1700",
+      question: "By then, printing, trade and learned societies were changing how people studied nature. Which countries were at the heart of the “Scientific Revolution” of telescopes, microscopes and scientific societies?",
+      options: [
+        { text: "Italy, the Netherlands, England and France" },
+        { text: "Japan, Korea and China, in East Asia" },
+        { text: "Brazil, Mexico and Peru, in the Americas" }
+      ],
+      correct: 0,
+      explanation: "Galileo in Italy pointed a telescope at the sky in 1609 and 1610. Lens makers and scientists in the Netherlands built early telescopes and microscopes. In England, Newton published his laws of motion in 1687 and the Royal Society was founded in 1660. In France, thinkers such as Descartes and Pascal worked on mathematics and physics, and the Académie des sciences was founded in 1666. Scientists in many other countries took part, and all of them built on Greek, Islamic-world, Indian and Chinese learning, so historians debate how “revolutionary” it was.",
+      whyItMatters: "Modern science still works the way it did then: make observations with instruments, publish the results, let others check them, and correct mistakes. Scientific journals, peer review and international collaboration all grew from this period. It is also why anyone with the right tools can check a scientific claim today, which is the basis for trusting science. And it shows how better tools, such as telescopes and microscopes, open up whole new questions.",
+      inherited: "We inherited a collective way of testing knowledge. Credit mostly went to a few named European men, while women, Indigenous peoples and enslaved experts who contributed were left out of the story."
+    },
+    {
+      id: 20,
+      era: "c. 1500–1980",
+      question: "The new science slowly began to change medicine. Where was inoculation against smallpox practised long before the first vaccine in 1796?",
+      options: [
+        { text: "Brazil and Argentina, in South America" },
+        { text: "Australia and New Zealand, in Oceania" },
+        { text: "China, India, Africa and the Ottoman Empire" }
+      ],
+      correct: 2,
+      explanation: "Variolation, giving a mild dose of smallpox on purpose to create immunity, was practised in China, India, Africa and the Ottoman Empire long before Edward Jenner’s cowpox vaccine of 1796. It was promoted in Britain by Lady Mary Wortley Montagu, and in Boston by Cotton Mather, who learned about it from an enslaved man named Onesimus (1721). A World Health Organization campaign (1967–1977) ended natural smallpox, and eradication was declared in 1980.",
+      whyItMatters: "Vaccines protect you and your community, and smallpox shows that a disease can be beaten for good when countries cooperate. The same tools are used today against measles and polio, but where vaccination rates fall, diseases such as measles come back. The story also shows that medical knowledge came from many cultures, including enslaved people whose contributions were not credited at the time.",
+      inherited: "We inherited vaccines, but gaps in vaccination and misinformation can bring diseases back."
+    },
+    {
+      id: 21,
+      era: "c. 1760",
+      question: "Science, coal and new machines then transformed how people worked. Which country led the first industrial revolution, built on steam engines and cotton mills?",
+      options: [
+        { text: "France, with its royal glass factories" },
+        { text: "Britain, with its coal and mills" },
+        { text: "Japan, with its silk workshops" }
+      ],
+      correct: 1,
+      explanation: "Coal-fired steam engines and mechanised mills began in Britain. The mills used cotton grown by enslaved people in the Americas, and factory work was often dangerous, including for children. Laws such as the Factory Act of 1833 began to limit child labour.",
+      whyItMatters: "The factories, railways and electricity grids we depend on come from this period, and so does the habit of burning coal, oil and gas for energy. Today, those fuels are the main cause of climate change, so the revolution that made life richer also created one of our biggest problems. Rules such as limits on child labour and working hours exist because workers fought for them. And the cotton story reminds us that this wealth was tied to slavery.",
+      inherited: "We inherited machines, higher productivity and labour protections won by workers."
+    },
+    {
+      id: 22,
+      era: "1989",
+      question: "Factories, railways and telegraphs made information move faster and faster. Where was the World Wide Web invented, in 1989?",
+      options: [
+        { text: "In California, at a young computer company" },
+        { text: "In Germany, at a government computing office" },
+        { text: "In Switzerland, at the CERN laboratory" }
+      ],
+      correct: 2,
+      explanation: "Tim Berners-Lee proposed the Web at CERN in 1989. In 1993 CERN made the Web’s software free for anyone to use. The Web runs on top of the Internet, which grew from the ARPANET (1969) and shared standards such as TCP/IP.",
+      whyItMatters: "You are probably reading this through the Web. Because CERN made the technology free in 1993 and the standards stayed open, anyone could build a website without asking permission, which is why there are so many independent sites. Today, a few big companies control much of what we see online, and some governments block or monitor access, so arguments about keeping the internet open are about this same choice. Open and free was not automatic: people chose it.",
+      inherited: "We inherited an open network. Keeping it open, fair and safe is still our job."
+    },
+    {
+      id: 23,
+      era: "2020",
+      question: "Over the next decades, the Web let scientists share data almost instantly. Which new kind of vaccine, built on decades of earlier research, was authorised in the UK and the United States in December 2020?",
+      options: [
+        { text: "mRNA vaccines, using genetic instructions" },
+        { text: "Vaccines made from cowpox, like Jenner’s" },
+        { text: "Antibiotic injections, taken once a year" }
+      ],
+      correct: 0,
+      explanation: "Scientists in China shared the virus’s genetic sequence in January 2020, and mRNA vaccines were authorised in the UK and the United States in December 2020, building on decades of research, including work by Katalin Karikó and Drew Weissman. Other types of vaccine were also authorised around then in other countries, including China and Russia. In 2021, rich countries vaccinated far faster than poor ones.",
+      whyItMatters: "The speed of the COVID-19 vaccines came from decades of earlier research and from scientists openly sharing data, not from a sudden miracle. Researchers are now testing mRNA technology against other diseases, and that work is still ongoing. But the vaccines reached rich countries far sooner than poor ones, so fairness and trust in science are still very much alive as questions. The lesson of this whole quiz is that knowledge builds on knowledge, and what we do with it is a choice.",
+      inherited: "This quiz has traced one thread: knowledge builds on knowledge, and each generation inherits both tools and responsibilities."
+    }
+  ];
+
+  if (typeof module === "object" && module.exports) module.exports = QUESTIONS;
+  else root.QUIZ_QUESTIONS = QUESTIONS;
+})(typeof window !== "undefined" ? window : this);
+
+</script>
+  <script>
+/*
+ * HOST ONLY. Keep this file separate from the quiz questions.
+ *
+ * The final message lives here, lightly encoded so it is not readable as plain
+ * text in the page source. This is obfuscation, not security: anyone determined
+ * to dig through the browser's developer tools could still find it.
+ *
+ * The quiz reveals the message only after question 35 has been completed.
+ * The message is never built from answer text; it is always decoded from here.
+ */
+(function (root) {
+  "use strict";
+
+  var ENCODED = "VSBSIE9MRCBFTk9VR0ggVE8gQkUgQU4gQVVOVElFIQ==";
+
+  var ENCODED_CHEER = "Q29uZ3JhdHVsYXRpb25zIQ==";
+
+  function decode(b64) {
+    var bin = typeof atob === "function" ? atob(b64) : Buffer.from(b64, "base64").toString("binary");
+    if (typeof TextDecoder === "function") {
+      var bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder("utf-8").decode(bytes);
+    }
+    // Fallback for very old browsers
+    return decodeURIComponent(bin.split("").map(function (c) {
+      return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(""));
+  }
+
+  var api = {
+    /** The exact message shown at the end. */
+    getMessage: function () {
+      return decode(ENCODED);
+    },
+    /** A short celebratory line shown under the message. */
+    getCheer: function () {
+      return decode(ENCODED_CHEER);
+    },
+    /** Letters only, upper case. Position n belongs to question n + 1. */
+    getLetters: function () {
+      return decode(ENCODED).replace(/[^A-Za-z]/g, "").toUpperCase();
+    }
+  };
+
+  if (typeof module === "object" && module.exports) module.exports = api;
+  else root.QuizSecret = api;
+})(typeof window !== "undefined" ? window : this);
+
+</script>
+  <script>
+/*
+ * Illustrations, one per question, drawn as inline SVG so they work offline.
+ * Colours come from CSS classes (see styles.css, ".art"), so they match the page.
+ * Each picture shows the subject of the question without giving away the answer.
+ * Question number -> function returning an SVG string.
+ */
+(function (root) {
+  "use strict";
+
+  var W = 400, H = 200;
+
+  function svg(label, body) {
+    return '<svg viewBox="0 0 ' + W + " " + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="' + label + '">' + body + "</svg>";
+  }
+  function rect(x, y, w, h, cls, rx) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '"' + (rx ? ' rx="' + rx + '"' : "") + ' class="' + cls + '"/>'; }
+  function circ(x, y, r, cls) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" class="' + cls + '"/>'; }
+  function ell(x, y, rx, ry, cls) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="' + rx + '" ry="' + ry + '" class="' + cls + '"/>'; }
+  function path(d, cls, extra) { return '<path d="' + d + '" class="' + cls + '"' + (extra ? " " + extra : "") + "/>"; }
+  function line(x1, y1, x2, y2, cls, sw) { return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" class="' + cls + '"' + (sw ? ' stroke-width="' + sw + '"' : "") + "/>"; }
+  function text(x, y, s, cls, size, anchor) { return '<text x="' + x + '" y="' + y + '" class="' + cls + '" font-size="' + size + '" text-anchor="' + (anchor || "middle") + '">' + s + "</text>"; }
+  function rep(n, fn) { var s = ""; for (var i = 0; i < n; i++) s += fn(i); return s; }
+  function grp(cls, style, inner) { return '<g class="' + cls + '"' + (style ? ' style="' + style + '"' : "") + ">" + inner + "</g>"; }
+  function bg() { return rect(0, 0, W, H, "fq"); }
+  function r1(n) { return Math.round(n * 10) / 10; }
+
+  function gear(cx, cy, R, teeth, cls) {
+    var pts = [], a, i, step = Math.PI * 2 / teeth;
+    for (i = 0; i < teeth; i++) {
+      a = i * step;
+      pts.push([cx + Math.cos(a - step * 0.22) * R * 0.78, cy + Math.sin(a - step * 0.22) * R * 0.78]);
+      pts.push([cx + Math.cos(a - step * 0.14) * R, cy + Math.sin(a - step * 0.14) * R]);
+      pts.push([cx + Math.cos(a + step * 0.14) * R, cy + Math.sin(a + step * 0.14) * R]);
+      pts.push([cx + Math.cos(a + step * 0.22) * R * 0.78, cy + Math.sin(a + step * 0.22) * R * 0.78]);
+    }
+    var d = "M" + pts.map(function (p) { return r1(p[0]) + " " + r1(p[1]); }).join(" L") + " Z";
+    return path(d, cls) + circ(cx, cy, R * 0.3, "fq");
+  }
+
+  function camel(x, y, s) {
+    return '<g transform="translate(' + x + " " + y + ") scale(" + s + ')">' +
+      rect(0, 0, 58, 22, "fn", 11) + ell(16, -4, 8, 9, "fn") + ell(36, -4, 8, 9, "fn") +
+      path("M50 6 Q64 -4 66 -24", "sn", 'stroke-width="9"') + ell(72, -27, 9, 5, "fn") +
+      line(8, 18, 8, 44, "sn", 5) + line(20, 18, 20, 44, "sn", 5) + line(40, 18, 40, 44, "sn", 5) + line(52, 18, 52, 44, "sn", 5) +
+      "</g>";
+  }
+
+  var ART = {};
+
+  /* 1 Farming */
+  ART[1] = function () {
+    var stalks = rep(15, function (i) {
+      var x = 24 + i * 25, top = 112 + (i % 3) * 8;
+      var ears = rep(4, function (k) { return ell(x - 4, top + k * 9, 3.6, 7, "fz") + ell(x + 4, top + k * 9 + 3, 3.6, 7, "fz"); });
+      return grp("sway", "animation-delay:" + (i * 0.25) + "s", line(x, 192, x, top, "sz", 2) + ears);
+    });
+    return svg("Golden stalks of wheat growing in a field under a bright sun",
+      bg() + circ(330, 48, 40, "fz o2") + circ(330, 48, 26, "fz") +
+      path("M0 150 Q100 118 200 140 T400 128 L400 200 L0 200 Z", "fp") +
+      path("M0 172 Q120 150 250 166 T400 160 L400 200 L0 200 Z", "fl o5") + stalks);
+  };
+
+  /* 2 Clay tablet */
+  ART[2] = function () {
+    var marks = rep(5, function (r) {
+      return rep(10, function (c) {
+        var x = 128 + c * 16 + (r % 2) * 5, y = 60 + r * 21, k = (c * 2 + r) % 3, d;
+        if (k === 0) d = "M" + x + " " + y + " l10 2 l-10 5 z";
+        else if (k === 1) d = "M" + x + " " + y + " l2 10 l5 -10 z";
+        else d = "M" + x + " " + y + " l8 7 l-9 2 z";
+        return path(d, "fd");
+      });
+    });
+    return svg("A clay tablet covered in rows of wedge-shaped marks, with a reed stylus beside it",
+      bg() + rect(104, 34, 192, 132, "fa", 16) + rect(104, 34, 192, 132, "so", 16).replace('class="so"', 'class="sd" fill="none" stroke-width="2" opacity=".5"') +
+      marks + line(318, 52, 352, 18, "sz", 5) + path("M318 52 l-6 8 l10 -2 z", "fz"));
+  };
+
+  /* 3 Pyramid */
+  ART[3] = function () {
+    var blocks = rep(7, function (i) { var y = 170 - i * 18; return line(200 - (y - 40) * 0.92, y, 200 + (y - 40) * 0.92, y, "sd", 1).replace('class="sd"', 'class="sd" opacity=".35"'); });
+    var workers = rep(6, function (i) {
+      var x = 48 + i * 16, y = 168;
+      return circ(x, y - 12, 3, "fb") + line(x, y - 9, x, y, "sb", 2);
+    });
+    return svg("The Great Pyramid with a small crew of workers at its foot",
+      bg() + circ(70, 48, 22, "fz") + path("M300 170 L352 112 L400 170 Z", "fl") +
+      path("M78 170 L200 38 L322 170 Z", "fz") + path("M200 38 L322 170 L200 170 Z", "fn") + blocks +
+      rect(0, 170, 400, 30, "fp") + workers);
+  };
+
+  /* 4 Indus city, from above */
+  ART[4] = function () {
+    var blocks = rep(3, function (r) {
+      return rep(6, function (c) { return rect(30 + c * 58, 30 + r * 52, 46, 40, "fm o4", 3); });
+    });
+    return svg("A planned city seen from above, with straight streets and a water channel for drainage",
+      bg() + blocks +
+      line(18, 76, 382, 76, "st", 3) + line(18, 128, 382, 128, "st", 3) + line(198, 20, 198, 180, "st", 3) +
+      rect(30, 30, 46, 40, "fz o6", 3) + rect(144, 82, 46, 40, "ft", 3) + circ(256, 76, 5, "fb"));
+  };
+
+  /* 5 Law stele */
+  ART[5] = function () {
+    var rows = rep(8, function (r) {
+      return rep(7, function (c) { return rect(172 + c * 8 + (r % 2) * 2, 112 + r * 8, 5, 2.5, "fd"); });
+    });
+    return svg("A tall carved stone pillar with a king at the top and rows of tiny wedge-shaped writing below",
+      bg() + circ(200, 100, 86, "fz o2") +
+      path("M160 176 L160 60 Q160 28 200 28 Q240 28 240 60 L240 176 Z", "fq2 so") +
+      circ(184, 66, 5, "fz") + path("M176 98 L192 98 L190 74 L178 74 Z", "fz") +
+      circ(218, 70, 5, "fb") + path("M208 98 L228 98 L225 78 L211 78 Z", "fb o8") + line(192, 84, 208, 84, "sz", 2) +
+      rows + rect(148, 176, 104, 10, "fl"));
+  };
+
+  /* 6 Phoenician ship */
+  ART[6] = function () {
+    return svg("A trading ship with a striped sail crossing a rolling sea",
+      bg() + circ(62, 48, 22, "fz") + rect(0, 132, 400, 68, "ft o4") +
+      line(205, 124, 205, 38, "sb", 3) +
+      path("M205 44 L276 58 L276 108 L205 112 Z", "fb") +
+      line(205, 66, 276, 70, "sz", 3) + line(205, 86, 276, 88, "sz", 3) +
+      path("M108 118 L302 118 Q288 152 244 158 L162 158 Q124 152 108 118 Z", "fz") +
+      path("M302 118 Q326 100 318 72", "sz", 'stroke-width="5"') +
+      grp("drift", "", path("M-20 152 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0", "sb o5") +
+        path("M-20 172 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0", "sb o4") +
+        path("M-20 190 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0", "sb o3")));
+  };
+
+  /* 7 Oracle bone */
+  ART[7] = function () {
+    var glyph = function (x, y, k) {
+      var d = ["M" + x + " " + y + " h9 M" + (x + 4.5) + " " + y + " v12 M" + x + " " + (y + 12) + " h9",
+               "M" + x + " " + y + " l9 12 M" + (x + 9) + " " + y + " l-9 12 M" + x + " " + (y + 6) + " h9",
+               "M" + x + " " + y + " v12 M" + (x + 9) + " " + y + " v12 M" + x + " " + (y + 6) + " h9",
+               "M" + (x + 4) + " " + y + " v12 M" + x + " " + (y + 4) + " h9 M" + x + " " + (y + 12) + " h9"][k % 4];
+      return path(d, "sd", 'stroke-width="2"');
+    };
+    var left = rep(4, function (i) { return glyph(130, 50 + i * 26, i); });
+    var right = rep(4, function (i) { return glyph(256, 52 + i * 26, i + 1); });
+    var mid = rep(3, function (i) { return glyph(214, 54 + i * 28, i + 2); });
+    return svg("A turtle shell with small carved characters and thin cracks, used long ago to ask questions of ancestors",
+      bg() + ell(200, 100, 112, 78, "fa") + ell(200, 100, 112, 78, "so").replace('class="so"', 'class="sd" fill="none" stroke-width="2" opacity=".5"') +
+      line(200, 24, 200, 176, "sd", 2) + line(116, 72, 284, 72, "sd", 2) + line(108, 108, 292, 108, "sd", 2) + line(122, 144, 278, 144, "sd", 2) +
+      left + right + mid +
+      path("M200 108 l12 -9 l-6 15 l14 -7 l-5 12", "sd", 'stroke-width="2"') + path("M200 72 l-11 8 l7 -13 l-12 7", "sd", 'stroke-width="2"'));
+  };
+
+  /* 8 Royal Road */
+  ART[8] = function () {
+    var house = function (x, y) { return rect(x - 9, y - 12, 18, 12, "fz") + path("M" + (x - 12) + " " + (y - 12) + " L" + x + " " + (y - 24) + " L" + (x + 12) + " " + (y - 12) + " Z", "fn"); };
+    return svg("A long winding road across hills with small relay stations along the way",
+      bg() + circ(340, 40, 18, "fz") +
+      path("M0 140 Q80 90 170 120 T400 100 L400 200 L0 200 Z", "fp") +
+      path("M0 170 Q120 130 240 160 T400 150 L400 200 L0 200 Z", "fl o5") +
+      path("M-10 196 Q90 150 150 162 T270 124 T410 96", "sm", 'stroke-width="14" opacity=".5"') +
+      path("M-10 196 Q90 150 150 162 T270 124 T410 96", "sz flow", 'stroke-width="2.5" stroke-dasharray="7 9"') +
+      house(88, 150) + house(214, 132) + house(338, 100));
+  };
+
+  /* 9 Assembly */
+  ART[9] = function () {
+    var rows = "", R, i, n, a, x, y;
+    for (R = 50; R <= 130; R += 20) {
+      n = Math.round(R / 7);
+      for (i = 0; i <= n; i++) {
+        a = Math.PI + 0.18 + (Math.PI - 0.36) * i / n;
+        x = 200 + Math.cos(a) * R * 1.3; y = 176 + Math.sin(a) * R * 0.95;
+        rows += circ(r1(x), r1(y), 5, (i + R) % 3 === 0 ? "fb" : "fm");
+        if ((i * 7 + R) % 5 === 0) rows += line(r1(x), r1(y - 5), r1(x), r1(y - 12), "sb", 2);
+      }
+    }
+    return svg("A crowd seated in a half circle on a hillside, listening to a speaker, with some raising their hands to vote",
+      bg() + path("M0 200 L0 140 Q200 60 400 140 L400 200 Z", "fp") + rows +
+      rect(184, 168, 32, 6, "fl") + circ(200, 158, 6, "fz") + path("M192 168 L208 168 L205 162 L195 162 Z", "fz"));
+  };
+
+  /* 10 Library */
+  ART[10] = function () {
+    var nooks = rep(4, function (r) {
+      return rep(8, function (c) {
+        var x = 50 + c * 38, y = 38 + r * 34;
+        return rect(x, y, 32, 28, "fq", 3) + rect(x + 4, y + 9, 24, 6, "fb o8", 3) + rect(x + 6, y + 18, 20, 5, "fz o8", 2.5);
+      });
+    });
+    return svg("A great hall with walls of shelves filled with rolled scrolls",
+      bg() + rect(36, 28, 328, 150, "fp") + nooks +
+      rect(26, 20, 14, 162, "fb") + rect(360, 20, 14, 162, "fb") + rect(20, 14, 360, 10, "fb") + rect(20, 178, 360, 8, "fl"));
+  };
+
+  /* 11 Camel caravan */
+  ART[11] = function () {
+    return svg("A caravan of camels walking across sand dunes at sunset",
+      bg() + circ(310, 70, 34, "fz o3") + circ(310, 70, 22, "fz") +
+      path("M0 140 Q100 100 200 140 T400 120 L400 200 L0 200 Z", "fp") +
+      path("M0 170 Q120 140 260 168 T400 156 L400 200 L0 200 Z", "fl o6") +
+      grp("sway2", "", camel(40, 118, 0.9) + camel(150, 124, 0.9) + camel(260, 120, 0.9)));
+  };
+
+  /* 12 Pantheon */
+  ART[12] = function () {
+    var cols = rep(6, function (i) { return rect(104 + i * 36, 150, 14, 28, "fb"); });
+    return svg("A Roman temple with tall columns, a triangular front and a huge round concrete dome with a circular opening at the top",
+      bg() + path("M115 108 A85 85 0 0 1 285 108 Z", "fz") +
+      path("M135 108 A65 65 0 0 1 265 108", "sd", 'opacity=".45" stroke-width="2"') + path("M155 108 A45 45 0 0 1 245 108", "sd", 'opacity=".45" stroke-width="2"') +
+      circ(200, 28, 6, "fb") + rect(112, 108, 176, 20, "fn") +
+      path("M92 146 L200 118 L308 146 Z", "fm") + rect(92, 146, 216, 8, "fb") + cols + rect(86, 178, 228, 8, "fl"));
+  };
+
+  /* 13 Zero */
+  ART[13] = function () {
+    var digits = rep(9, function (i) { return text(52 + i * 37, 186, String(i + 1), "tx fm o7", 20); });
+    return svg("A large glowing zero above a row of the numbers one to nine",
+      bg() + circ(200, 84, 56, "fz o2") + '<circle cx="200" cy="84" r="42" class="sz" stroke-width="16" fill="none"/>' +
+      digits +
+      text(334, 64, "0 1 0", "tx fm o6", 14) + text(334, 84, "1 1 0", "tx fm o6", 14) + text(334, 104, "0 0 1", "tx fm o6", 14) +
+      text(66, 64, "∅", "tx fm o6", 26));
+  };
+
+  /* 14 Round city and algebra */
+  ART[14] = function () {
+    var gates = [[200, 18], [282, 100], [200, 182], [118, 100]].map(function (p) { return rect(p[0] - 6, p[1] - 6, 12, 12, "fz"); }).join("");
+    return svg("A round city with a river beside it, next to a simple equation: x plus 3 equals 7",
+      bg() + path("M46 0 Q80 56 58 104 T84 200", "st", 'stroke-width="14" opacity=".6"') +
+      circ(200, 100, 82, "sb") + circ(200, 100, 62, "sb").replace('class="sb"', 'class="sb" opacity=".5"') + circ(200, 100, 34, "sm") +
+      line(200, 18, 200, 182, "sm", 1.5) + line(118, 100, 282, 100, "sm", 1.5) + circ(200, 100, 13, "fz") + gates +
+      text(350, 94, "x + 3 = 7", "tx fb", 17) + text(350, 120, "x = 4", "tx fz", 17));
+  };
+
+  /* 15 Paper making */
+  ART[15] = function () {
+    var mesh = rep(7, function (i) { return line(112 + i * 10, 96, 112 + i * 10, 138, "sb", 1).replace('class="sb"', 'class="sb" opacity=".6"'); });
+    var stack = rep(6, function (i) { return rect(256 + (i % 2) * 3, 164 - i * 7, 96, 6, i % 2 ? "fm" : "fb"); });
+    var hung = rep(5, function (i) { return grp("sway", "animation-delay:" + (i * 0.4) + "s", rect(40 + i * 66, 40, 34, 42, "fb o8", 2)); });
+    return svg("A paper maker lifting a thin wet sheet from a vat, with finished sheets hanging to dry and a stack of paper",
+      bg() + line(30, 40, 370, 40, "sm", 2) + hung +
+      rect(70, 122, 150, 56, "fl") + rect(76, 130, 138, 42, "ft") +
+      rect(106, 92, 80, 48, "sb", 2).replace('class="sb"', 'class="sb" fill="none"') + mesh + rect(106, 92, 80, 5, "fb") + stack);
+  };
+
+  /* 16 Movable type */
+  ART[16] = function () {
+    var g = [
+      function (x, y) { return "M" + (x + 7) + " " + (y + 7) + " h14 M" + (x + 14) + " " + (y + 7) + " v14 M" + (x + 7) + " " + (y + 21) + " h14"; },
+      function (x, y) { return "M" + (x + 7) + " " + (y + 7) + " l14 14 M" + (x + 21) + " " + (y + 7) + " l-14 14"; },
+      function (x, y) { return "M" + (x + 7) + " " + (y + 7) + " v14 M" + (x + 21) + " " + (y + 7) + " v14 M" + (x + 7) + " " + (y + 14) + " h14"; },
+      function (x, y) { return "M" + (x + 14) + " " + (y + 6) + " v16 M" + (x + 7) + " " + (y + 12) + " h14 M" + (x + 7) + " " + (y + 22) + " h14"; }
+    ];
+    var blocks = rep(3, function (r) {
+      return rep(8, function (c) {
+        var x = 62 + c * 34, y = 52 + r * 40;
+        return rect(x, y, 30, 34, "fs", 3) + path(g[(c + r * 3) % 4](x, y), "sd", 'stroke-width="2.2"');
+      });
+    });
+    return svg("A tray of small metal blocks, each carrying a raised character, ready to be inked and pressed onto paper",
+      bg() + rect(48, 38, 304, 136, "fp") + rect(48, 38, 304, 136, "sl").replace('class="sl"', 'class="sl" fill="none" stroke-width="2"') + blocks);
+  };
+
+  /* 17 Mud-brick mosque */
+  ART[17] = function () {
+    var beams = rep(5, function (i) { return line(130 + i * 7, 70 + i * 0, 126 + i * 7, 74, "sd", 2); }) +
+      rep(9, function (i) { return line(118 + i * 8, 110, 112 + i * 8, 112, "sd", 2); });
+    return svg("A large mud-brick building with three towers and wooden beams sticking out of its walls, standing in the desert",
+      bg() + circ(70, 52, 20, "fz") + path("M0 170 Q100 150 200 168 T400 160 L400 200 L0 200 Z", "fp") +
+      path("M104 176 L126 72 L274 72 L296 176 Z", "fn") +
+      path("M178 72 L188 26 L212 26 L222 72 Z", "fn") + path("M128 72 L136 44 L154 44 L162 72 Z", "fn") + path("M238 72 L246 44 L264 44 L272 72 Z", "fn") +
+      circ(200, 22, 4, "fb") + circ(145, 40, 3.5, "fb") + circ(255, 40, 3.5, "fb") +
+      beams + path("M184 176 L184 138 Q200 118 216 138 L216 176 Z", "fi") +
+      rep(3, function (i) { return line(124 + i * 76, 100, 118 + i * 76, 102, "sd", 2); }));
+  };
+
+  /* 18 Khipu */
+  ART[18] = function () {
+    var fills = ["fb", "fz", "fr", "ft", "fy"], strokes = ["sb", "sz", "sr", "st", "sy"];
+    var cords = rep(19, function (i) {
+      var x = 66 + i * 15.5, len = 52 + ((i * 37) % 70), k = i % 5, kn = "";
+      var j, n = 2 + (i % 3);
+      for (j = 0; j < n; j++) kn += circ(x, 48 + 14 + j * 20 + (i % 4) * 3, 3.4, fills[k]);
+      return grp("sway", "animation-delay:" + (i * 0.18) + "s", line(x, 40, x, 40 + len, strokes[k], 2) + kn + circ(x, 40 + len, 3, fills[(k + 2) % 5]));
+    });
+    return svg("A thick cord with many coloured strings hanging from it, each tied with knots at different heights",
+      bg() + line(48, 40, 352, 40, "sz", 6) + cords);
+  };
+
+  /* 19 Foods */
+  ART[19] = function () {
+    return svg("A tomato, a potato, an ear of corn and a chilli pepper, with arrows showing them travelling across the sea",
+      bg() + rect(0, 168, 400, 32, "ft o4") +
+      path("M-10 188 q20 -9 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0", "sb o4") +
+      path("M50 70 Q200 10 350 70", "sm", 'stroke-dasharray="6 6" stroke-width="2"') + path("M350 70 l-10 -10 m10 10 l-14 2", "sm", 'stroke-width="2"') +
+      circ(80, 118, 28, "fr") + path("M66 94 l14 8 l14 -8 l-6 10 l8 6 l-16 -2 l-16 2 l8 -6 z", "fg") +
+      ell(160, 122, 36, 24, "fn") + circ(148, 118, 2.5, "fd") + circ(166, 130, 2.5, "fd") + circ(176, 114, 2.5, "fd") +
+      path("M232 150 Q242 80 266 82 Q282 100 268 150 Z", "fy") + path("M232 150 Q222 120 238 100 Q242 130 252 148 Z", "fg") + path("M268 150 Q282 120 264 98 Q262 130 258 148 Z", "fg") +
+      path("M318 90 Q350 100 340 140 Q336 150 330 142 Q336 112 314 104 Z", "fr") + path("M318 90 l-4 -10", "sg", 'stroke-width="4"'));
+  };
+
+  /* 20 Vaccine */
+  ART[20] = function () {
+    var spikes = rep(12, function (i) {
+      var a = i * Math.PI / 6;
+      return line(r1(70 + Math.cos(a) * 24), r1(100 + Math.sin(a) * 24), r1(70 + Math.cos(a) * 34), r1(100 + Math.sin(a) * 34), "sr", 3) + circ(r1(70 + Math.cos(a) * 36), r1(100 + Math.sin(a) * 36), 3, "fr");
+    });
+    return svg("A shield with a check mark in the middle, a syringe on the right and a crossed-out virus on the left",
+      bg() + circ(70, 100, 24, "fr") + spikes + line(36, 66, 104, 134, "sb", 5) +
+      path("M200 28 L262 48 L262 104 Q262 150 200 176 Q138 150 138 104 L138 48 Z", "fz") +
+      path("M172 100 l20 20 l38 -42", "sd", 'stroke-width="9"').replace('class="sd"', 'class="sb"') +
+      grp("", "", '<g transform="rotate(-35 330 100)">' + rect(300, 92, 60, 16, "fb o9", 3) + rect(292, 96, 10, 8, "fm") + rect(362, 98, 24, 4, "fm") + rect(356, 88, 4, 24, "fm") + rect(310, 95, 30, 10, "ft") + line(292, 100, 276, 100, "sm", 2) + "</g>"));
+  };
+
+  /* 21 Industrial Revolution */
+  ART[21] = function () {
+    var roof = "M104 104", i;
+    for (i = 0; i < 5; i++) roof += " L" + (104 + i * 32) + " 84 L" + (136 + i * 32) + " 104";
+    roof += " L264 104 Z";
+    var windows = rep(6, function (i) { return rect(116 + i * 24, 124, 12, 14, "fy"); });
+    var smoke = rep(4, function (i) { return grp("rise", "animation-delay:" + (i * 0.9) + "s", circ(262 + (i % 2) * 4, 52, 9 + i * 1.5, "fm o5")); });
+    return svg("A factory with tall chimneys sending out smoke, a turning gear wheel and a railway track",
+      bg() + rect(0, 176, 400, 24, "fp") + line(0, 186, 400, 186, "sm", 3) +
+      rep(20, function (i) { return line(i * 20 + 6, 180, i * 20 + 6, 192, "sl", 3); }) +
+      rect(104, 104, 160, 72, "fn") + path(roof, "fn") + windows +
+      rect(236, 46, 18, 66, "fl") + rect(262, 62, 16, 50, "fl") + smoke +
+      grp("spin", "", gear(336, 132, 34, 10, "fz")) + grp("spin2", "", gear(52, 140, 24, 8, "fm o8")));
+  };
+
+  /* 22 Web */
+  ART[22] = function () {
+    var pts = [], i, a, nodes = "", links = "";
+    for (i = 0; i < 10; i++) { a = i * Math.PI * 2 / 10 + 0.3; pts.push([r1(200 + Math.cos(a) * 88), r1(100 + Math.sin(a) * 78)]); }
+    pts.forEach(function (p, idx) {
+      links += line(p[0], p[1], 200, 100, "sm", 1).replace('class="sm"', 'class="sm" opacity=".5"');
+      var q = pts[(idx + 3) % pts.length];
+      links += line(p[0], p[1], q[0], q[1], "sm", 1).replace('class="sm"', 'class="sm" opacity=".3"');
+      nodes += grp("pulse", "animation-delay:" + (idx * 0.3) + "s", circ(p[0], p[1], 5, "fz"));
+    });
+    return svg("A globe at the centre of a network of linked points, with the letters www",
+      bg() + links + circ(200, 100, 40, "fp") + circ(200, 100, 40, "sb") +
+      nodes + text(200, 107, "www", "tx fb", 20));
+  };
+
+  /* 23 mRNA */
+  ART[23] = function () {
+    var a = "", b = "", rungs = "", x, y1, y2, t;
+    for (x = 150; x <= 330; x += 3) {
+      t = (x - 150) / 28;
+      y1 = 120 + Math.sin(t) * 34; y2 = 120 - Math.sin(t) * 34;
+      a += (x === 150 ? "M" : " L") + x + " " + r1(y1);
+      b += (x === 150 ? "M" : " L") + x + " " + r1(y2);
+    }
+    for (x = 156; x <= 330; x += 12) {
+      t = (x - 150) / 28;
+      rungs += line(x, r1(120 + Math.sin(t) * 34), x, r1(120 - Math.sin(t) * 34), "sm", 1.5);
+    }
+    var spikes = rep(10, function (i) {
+      var ang = i * Math.PI / 5;
+      return line(r1(340 + Math.cos(ang) * 16), r1(44 + Math.sin(ang) * 16), r1(340 + Math.cos(ang) * 26), r1(44 + Math.sin(ang) * 26), "sr", 3) + circ(r1(340 + Math.cos(ang) * 28), r1(44 + Math.sin(ang) * 28), 3, "fr");
+    });
+    return svg("A small vaccine vial next to a twisting strand of genetic code, with a virus particle above it",
+      bg() + rect(58, 52, 54, 20, "fz", 4) + rect(64, 70, 42, 94, "fb o4", 6) + rect(66, 112, 38, 50, "ft", 5) + rect(66, 164, 38, 4, "fl") +
+      rungs + path(a, "sz", 'stroke-width="4"') + path(b, "sb", 'stroke-width="4"') +
+      circ(340, 44, 15, "fr") + spikes);
+  };
+
+  /* 101 Hunter-gatherers */
+  ART[101] = function () {
+    var stars = rep(26, function (i) { return circ(((i * 97) % 380) + 10, ((i * 53) % 90) + 8, i % 4 === 0 ? 1.8 : 1.1, "fb o7"); });
+    var person = function (x, y, s) {
+      return '<g transform="translate(' + x + " " + y + ") scale(" + s + ')">' + circ(0, -30, 6, "fb") + path("M-7 -22 L7 -22 L10 6 L-10 6 Z", "fm") + line(-6, 6, -8, 24, "sm", 3) + line(6, 6, 8, 24, "sm", 3) + "</g>";
+    };
+    var flame = path("M226 160 Q214 136 230 116 Q232 134 246 144 Q252 156 242 160 Z", "fz") + path("M229 160 Q224 146 232 136 Q236 148 240 160 Z", "fr");
+    return svg("People gathered around a campfire at night, next to a cave with a painted animal and handprints on its wall",
+      rect(0, 0, W, H, "fi") + stars + circ(350, 44, 16, "fm") + circ(356, 40, 14, "fi") +
+      rect(0, 160, 400, 40, "fp") + path("M0 162 L0 58 Q44 14 96 62 L106 162 Z", "fl") +
+      path("M18 162 L18 96 Q54 62 86 96 L86 162 Z", "fi") +
+      ell(52, 132, 19, 10, "fr") + ell(34, 126, 7, 6, "fr") + path("M30 120 l-3 -8 M36 120 l1 -8", "sr", 'stroke-width="2"') +
+      line(40, 140, 40, 154, "sr", 3) + line(64, 140, 64, 154, "sr", 3) +
+      circ(70, 108, 3, "fr o7") + circ(76, 112, 3, "fr o7") + circ(64, 112, 3, "fr o7") +
+      line(214, 162, 252, 154, "sn", 5) + line(214, 154, 252, 162, "sn", 5) + grp("pulse", "", flame) +
+      person(180, 160, 0.9) + person(278, 160, 0.9) + person(320, 160, 0.8) + line(336, 120, 332, 164, "sn", 2));
+  };
+
+  /* 103 First city */
+  ART[103] = function () {
+    var houses = rep(5, function (i) {
+      var x = 22 + i * 30; return rect(x, 146, 22, 16, "fa") + rect(x + 8, 152, 6, 10, "fd");
+    }) + rep(5, function (i) {
+      var x = 238 + i * 30; return rect(x, 146, 22, 16, "fa") + rect(x + 8, 152, 6, 10, "fd");
+    });
+    var palm = function (x) { return line(x, 162, x + 2, 124, "sn", 3) + circ(x - 8, 124, 8, "fg") + circ(x + 10, 122, 8, "fg") + circ(x + 2, 114, 8, "fg"); };
+    return svg("A stepped temple tower rising above the flat-roofed houses of an early city beside a river",
+      bg() + circ(70, 44, 22, "fz") +
+      rect(0, 160, 400, 18, "fp") + rect(0, 178, 400, 22, "ft o6") +
+      path("M-10 188 q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0", "sb o4") +
+      rect(136, 140, 128, 20, "fa") + rect(152, 120, 96, 20, "fa") + rect(168, 100, 64, 20, "fa") + rect(184, 80, 32, 20, "fa") + rect(191, 64, 18, 16, "fb") +
+      path("M196 160 L204 160 L210 80 L190 80 Z", "fn o6") + houses + palm(120) + palm(300) +
+      path("M300 190 L330 190 L324 198 L306 198 Z", "fn"));
+  };
+
+  /* 110 Records of the sky */
+  ART[110] = function () {
+    var stars = rep(34, function (i) { return circ(((i * 71) % 390) + 6, ((i * 37) % 110) + 6, i % 5 === 0 ? 1.9 : 1.1, "fb o7"); });
+    var wedges = rep(3, function (r) {
+      return rep(10, function (c) {
+        var x = 142 + c * 12, y = 148 + r * 13, k = (c + r) % 3, d;
+        if (k === 0) d = "M" + x + " " + y + " l8 1 l-8 4 z"; else if (k === 1) d = "M" + x + " " + y + " l2 8 l4 -8 z"; else d = "M" + x + " " + y + " l6 6 l-7 1 z";
+        return path(d, "fd");
+      });
+    });
+    return svg("A night sky with a crescent moon and wandering planets along a dotted path, above a clay tablet covered in small wedge marks",
+      rect(0, 0, W, H, "fi") + stars +
+      circ(70, 44, 20, "fb") + circ(80, 40, 18, "fi") +
+      path("M20 118 Q200 20 380 96", "sm", 'stroke-dasharray="4 7" stroke-width="1.5"') +
+      grp("pulse", "", circ(120, 80, 7, "fz")) + circ(208, 60, 5, "fr") + grp("pulse", "animation-delay:1s", circ(290, 62, 6, "fy")) + circ(352, 88, 4, "fm") +
+      rect(128, 138, 144, 52, "fa", 8) + wedges);
+  };
+
+  /* 111 Natural explanations */
+  ART[111] = function () {
+    var cols = rep(4, function (i) { return rect(40 + i * 28, 104, 12, 58, "fb"); });
+    var cloud = circ(250, 56, 24, "fm") + circ(280, 48, 28, "fm") + circ(312, 58, 22, "fm") + rect(240, 56, 84, 22, "fm", 11);
+    return svg("A thinker in a robe pointing at a storm cloud with lightning, beside the columns of a Greek temple",
+      bg() + path("M30 104 L96 84 L162 104 Z", "fm") + rect(30, 104, 132, 8, "fb") + cols + rect(24, 162, 144, 8, "fl") +
+      cloud + path("M286 80 L274 108 L288 108 L276 136 L302 100 L288 100 L298 80 Z", "fz") +
+      rep(5, function (i) { return line(246 + i * 16, 90, 240 + i * 16, 112, "sm", 1.5).replace('class="sm"', 'class="sm" opacity=".5"'); }) +
+      rect(0, 170, 400, 30, "fp") +
+      circ(206, 120, 8, "fb") + path("M194 130 L218 130 L226 170 L186 170 Z", "fb o8") + line(214, 134, 244, 96, "sb", 3) + rect(180, 150, 12, 6, "fz", 2));
+  };
+
+  /* 119 Telescope */
+  ART[119] = function () {
+    var stars = rep(30, function (i) { return circ(((i * 83) % 390) + 6, ((i * 41) % 120) + 6, i % 6 === 0 ? 1.9 : 1.1, "fb o7"); });
+    return svg("A telescope on a wooden stand pointing at the Moon and a planet with four tiny moons, with an open book beside it",
+      rect(0, 0, W, H, "fi") + stars +
+      circ(318, 52, 30, "fm") + circ(308, 44, 5, "fl") + circ(328, 62, 7, "fl") + circ(324, 38, 3.5, "fl") +
+      circ(236, 40, 8, "fy") + circ(222, 38, 1.8, "fb") + circ(250, 42, 1.8, "fb") + circ(228, 52, 1.8, "fb") + circ(246, 30, 1.8, "fb") +
+      '<g transform="rotate(-38 150 120)">' + rect(80, 110, 150, 18, "fz", 4) + rect(214, 106, 20, 26, "fn", 3) + rect(76, 108, 8, 22, "fn", 2) + "</g>" +
+      line(134, 126, 104, 186, "sn", 5) + line(134, 126, 164, 186, "sn", 5) + line(134, 126, 134, 186, "sn", 5) +
+      rect(0, 186, 400, 14, "fp") + rect(200, 172, 54, 12, "fb", 2) + line(227, 172, 227, 184, "sd", 1.5));
+  };
+
+  // Which picture belongs to which question
+  var MAP = { 1: 101, 2: 1, 3: 103, 4: 2, 5: 3, 6: 4, 7: 5, 8: 7, 9: 6, 10: 110, 11: 111, 12: 9, 13: 11, 14: 13, 15: 14, 16: 16, 17: 17, 18: 19, 19: 119, 20: 20, 21: 21, 22: 22, 23: 23 };
+
+  var api = { render: function (id) { var k = MAP[id]; return k && ART[k] ? ART[k]() : ""; }, ids: function () { return Object.keys(MAP).map(Number); } };
+  if (typeof module === "object" && module.exports) module.exports = api;
+  else root.QuizArt = api;
+})(typeof window !== "undefined" ? window : this);
+
+</script>
+  <script>
+/*
+ * Quiz application. No dependencies.
+ *
+ * How it works:
+ *  - Each question has three plain answers.
+ *  - A wrong answer is crossed out and the player tries again.
+ *  - A correct answer reveals the explanation and earns the next letter of the
+ *    secret sentence. Letters collect in a strip at the top of the page.
+ *  - After the last question the full sentence is revealed.
+ *  - Players can go back to questions they have solved to read them again, and
+ *    move forward again, but they cannot skip past a question they have not solved.
+ *  - Progress is saved in localStorage, so a refresh resumes at the same place.
+ */
+(function () {
+  "use strict";
+
+  var QUESTIONS = window.QUIZ_QUESTIONS || [];
+  var SECRET = window.QuizSecret;
+  var TOTAL = 23;
+  var STORAGE_KEY = "what-we-inherited-progress-v3";
+  var LETTERS = ["A", "B", "C"];
+
+  var app = document.getElementById("app");
+  var progressBox = document.getElementById("progress");
+  var progressText = document.getElementById("progress-text");
+  var progressFill = document.getElementById("progress-fill");
+  var progressTrack = progressBox.querySelector("[role=progressbar]");
+  var lettersBox = document.getElementById("letters");
+
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var revealTimer = null;
+  var confettiCleanup = null;
+  var savedProgress = null;
+  var viewIndex = 0;      // the question being shown (never beyond the furthest solved or current one)
+  var reviewing = false;  // true when looking back at the questions after finishing
+
+  /* ---------- Small helpers ---------- */
+
+  function h(tag, attrs, kids) {
+    var el = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        var v = attrs[k];
+        if (v === false || v == null) return;
+        if (k === "class") el.className = v;
+        else if (k === "text") el.textContent = v;
+        else if (k.slice(0, 2) === "on") el.addEventListener(k.slice(2), v);
+        else if (v === true) el.setAttribute(k, "");
+        else el.setAttribute(k, v);
+      });
+    }
+    (kids || []).forEach(function (c) {
+      if (c == null) return;
+      el.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+    });
+    return el;
+  }
+
+  /* ---------- Data check (generic message only) ---------- */
+
+  function dataIsValid() {
+    try {
+      if (!SECRET || QUESTIONS.length !== TOTAL) return false;
+      if (SECRET.getLetters().length !== TOTAL) return false;
+      for (var i = 0; i < TOTAL; i++) {
+        var q = QUESTIONS[i];
+        if (!q || !q.options || q.options.length !== 3) return false;
+        if (typeof q.correct !== "number" || q.correct < 0 || q.correct > 2) return false;
+        for (var k = 0; k < 3; k++) if (!q.options[k].text) return false;
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* ---------- State and persistence ---------- */
+
+  function freshState() {
+    var wrong = [];
+    for (var i = 0; i < TOTAL; i++) wrong.push([]);
+    return { v: 3, phase: "welcome", index: 0, wrong: wrong };
+  }
+
+  function loadState() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return freshState();
+      var s = JSON.parse(raw);
+      var okPhase = ["welcome", "question", "feedback", "final"].indexOf(s.phase) !== -1;
+      var okIndex = typeof s.index === "number" && s.index >= 0 && s.index < TOTAL && Math.floor(s.index) === s.index;
+      var okWrong = Array.isArray(s.wrong) && s.wrong.length === TOTAL && s.wrong.every(function (list) {
+        return Array.isArray(list) && list.length <= 2 && list.every(function (n, pos) {
+          return typeof n === "number" && n >= 0 && n <= 2 && list.indexOf(n) === pos;
+        });
+      });
+      if (s.v !== 3 || !okPhase || !okIndex || !okWrong) return freshState();
+      if (s.phase === "final" && s.index !== TOTAL - 1) return freshState();
+      // A wrong list can never contain the correct answer.
+      for (var i = 0; i < TOTAL; i++) if (s.wrong[i].indexOf(QUESTIONS[i].correct) !== -1) return freshState();
+      return s;
+    } catch (e) {
+      return freshState();
+    }
+  }
+
+  var state = freshState();
+
+  function saveState() {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable: carry on in memory */ }
+  }
+
+  function clearState() {
+    try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+  }
+
+  /* ---------- Progress bar and letter strip ---------- */
+
+  function solvedCount() {
+    if (state.phase === "final") return TOTAL;
+    return state.phase === "feedback" ? state.index + 1 : state.index;
+  }
+
+  function isSolved(v) {
+    return v < state.index || (v === state.index && (state.phase === "feedback" || state.phase === "final"));
+  }
+
+  function onFrontier() {
+    return state.phase === "question" && viewIndex === state.index && !reviewing;
+  }
+
+  function goTo(n) {
+    if (n < 0 || n > state.index) return;
+    viewIndex = n;
+    render("[data-focus]");
+  }
+
+  function updateProgress() {
+    var show = state.phase === "question" || state.phase === "feedback" || (state.phase === "final" && reviewing);
+    progressBox.hidden = !show;
+    lettersBox.hidden = !show;
+    if (!show) return;
+    var done = solvedCount();
+    progressText.textContent = "Question " + (viewIndex + 1) + " of " + TOTAL;
+    progressFill.style.width = (done / TOTAL * 100) + "%";
+    progressTrack.setAttribute("aria-valuenow", String(done));
+    progressTrack.setAttribute("aria-valuetext", done + " of " + TOTAL + " questions solved");
+    renderLetterStrip(done);
+  }
+
+  function renderLetterStrip(earned) {
+    lettersBox.innerHTML = "";
+    var message = SECRET.getMessage();
+    var k = 0;
+    var got = [];
+    message.split(" ").forEach(function (word) {
+      var group = h("span", { class: "tiles", "aria-hidden": "true" });
+      Array.prototype.forEach.call(word, function (ch) {
+        if (!/[A-Za-z]/.test(ch)) return;
+        var have = k < earned;
+        var isNew = have && state.phase === "feedback" && k === state.index && viewIndex === state.index;
+        group.appendChild(h("span", { class: "tile" + (have ? " has" : "") + (isNew ? " fresh" : ""), text: have ? ch.toUpperCase() : "" }));
+        if (have) got.push(ch.toUpperCase());
+        k += 1;
+      });
+      if (group.childNodes.length) lettersBox.appendChild(group);
+    });
+    lettersBox.setAttribute("role", "group");
+    lettersBox.setAttribute("aria-label", earned ? "Letters collected so far: " + got.join(", ") : "No letters collected yet");
+  }
+
+  /* ---------- Rendering ---------- */
+
+  function stopEffects() {
+    if (revealTimer) { clearInterval(revealTimer); revealTimer = null; }
+    if (confettiCleanup) { confettiCleanup(); confettiCleanup = null; }
+  }
+
+  function render(focusSelector, keepScroll) {
+    var y = window.pageYOffset || 0;
+    stopEffects();
+    app.innerHTML = "";
+    updateProgress();
+    if (state.phase === "welcome") renderWelcome();
+    else if (state.phase === "final" && !reviewing) renderFinal();
+    else renderQuestion();
+    window.scrollTo(0, keepScroll ? y : 0);
+    var target = focusSelector ? app.querySelector(focusSelector) : null;
+    if (target) target.focus({ preventScroll: true });
+  }
+
+  function renderWelcome() {
+    var hasProgress = savedProgress && (savedProgress.phase === "question" || savedProgress.phase === "feedback");
+    var actions = h("div", { class: "actions" });
+    if (hasProgress) {
+      var next = savedProgress.index + 1;
+      actions.appendChild(h("button", {
+        class: "btn btn-primary", type: "button",
+        text: "Continue with question " + next,
+        onclick: function () { state = savedProgress; savedProgress = null; viewIndex = state.index; reviewing = false; render("[data-focus]"); }
+      }));
+      actions.appendChild(h("button", {
+        class: "btn btn-quiet", type: "button", text: "Start over",
+        onclick: function () { savedProgress = null; startFresh(); }
+      }));
+    } else {
+      actions.appendChild(h("button", { class: "btn btn-primary", type: "button", text: "Start quiz", onclick: startFresh }));
+    }
+
+    app.appendChild(h("section", { class: "welcome" }, [
+      h("h1", { text: "What We Inherited" }),
+      h("p", { class: "lead", text: "Journey through the history of humanity. Twenty-three questions. Thousands of years of discoveries. One final surprise." }),
+      actions,
+      h("p", { class: "note", text: "Every correct answer earns you a letter to collect. If you pick a wrong answer, just try again. You can go back to earlier questions to read them again, and your place is saved on this device if you close the page." })
+    ]));
+  }
+
+  function startFresh() {
+    state = freshState();
+    state.phase = "question";
+    viewIndex = 0;
+    reviewing = false;
+    clearState();
+    saveState();
+    render("[data-focus]");
+  }
+
+  function renderQuestion() {
+    var v = viewIndex;
+    var q = QUESTIONS[v];
+    var solved = isSolved(v);
+    var wrong = state.wrong[v];
+
+    var submit = h("button", { class: "btn btn-primary", type: "button", id: "submit", text: "Submit answer", disabled: true, onclick: onSubmit });
+    var choices = h("div", { class: "choices" + (solved ? " is-locked" : "") });
+
+    q.options.forEach(function (opt, i) {
+      var id = "choice-" + i;
+      var isWrong = wrong.indexOf(i) !== -1;
+      var input = h("input", { type: "radio", name: "answer", id: id, value: String(i), disabled: solved || isWrong });
+      var cls = "choice";
+      var verdict = null;
+      if (solved) {
+        if (i === q.correct) { cls += " is-correct"; verdict = "Correct answer"; input.checked = true; }
+        else if (isWrong) { cls += " is-wrong"; verdict = "Not this one"; }
+        else cls += " is-dim";
+      } else if (isWrong) {
+        cls += " is-wrong";
+        verdict = "Not this one";
+      }
+      var label = h("label", { class: cls, for: id }, [
+        input,
+        h("span", { class: "key", "aria-hidden": "true", text: LETTERS[i] }),
+        h("span", { class: "body" }, [
+          h("span", { class: "text", text: opt.text }),
+          verdict ? h("span", { class: "verdict", text: verdict }) : null
+        ])
+      ]);
+      if (!solved && !isWrong) {
+        input.addEventListener("change", function () {
+          choices.querySelectorAll(".choice").forEach(function (c) { c.classList.remove("is-selected"); });
+          label.classList.add("is-selected");
+          submit.disabled = false;
+        });
+      }
+      choices.appendChild(label);
+    });
+
+    var fieldset = h("fieldset", null, [
+      h("legend", { class: "sr-only", text: solved ? "This question is solved" : "Choose one answer" }),
+      choices
+    ]);
+
+    // Plain container, not a <form>: forms are blocked in some sandboxed viewers.
+    var form = h("div", { class: "answer-set" }, [fieldset]);
+    if (!solved) {
+      if (wrong.length) {
+        form.appendChild(h("p", { class: "try-again", role: "status", id: "try-again", tabindex: "-1", text: "Not quite. The crossed-out answer is not right, so try another one." }));
+      }
+      var row = [submit];
+      if (v > 0) row.push(h("button", { class: "btn btn-quiet", type: "button", id: "prev", text: "Previous question", onclick: function () { goTo(v - 1); } }));
+      form.appendChild(h("div", { class: "actions-row" }, row));
+    }
+
+    var figure = null;
+    if (window.QuizArt) {
+      var markup = window.QuizArt.render(q.id);
+      if (markup) { figure = h("figure", { class: "art" }); figure.innerHTML = markup; }
+    }
+
+    var section = h("section", { class: "quiz" }, [
+      h("p", { class: "era", text: q.era }),
+      figure,
+      h("h2", { class: "question", id: "question-text", tabindex: "-1", "data-focus": "", text: q.question }),
+      form
+    ]);
+
+    if (solved) {
+      var letter = SECRET.getLetters().charAt(v);
+      var tries = wrong.length;
+      var fb = h("div", { class: "feedback", id: "feedback", tabindex: "-1", role: "region", "aria-label": "Feedback", "data-focus": "" }, [
+        h("div", { class: "reward" }, [
+          h("span", { class: "reward-tile", "aria-hidden": "true", text: letter }),
+          h("div", { class: "reward-text" }, [
+            h("p", { class: "reward-title", text: "Correct! You earned the letter " + letter + "." }),
+            h("p", { class: "reward-sub", text: tries === 0 ? "First try. Keep your letters: they spell the final surprise." : "Got it after " + (tries + 1) + " tries. Keep your letters: they spell the final surprise." })
+          ])
+        ]),
+        h("p", { class: "explain", text: q.explanation }),
+        h("h3", { text: "Why it matters today" }),
+        h("p", { text: q.whyItMatters })
+      ]);
+      if (q.inherited) {
+        fb.appendChild(h("h3", { text: "What we inherited, and what we may have lost" }));
+        fb.appendChild(h("p", { text: q.inherited }));
+      }
+      var last = v === TOTAL - 1;
+      var primary;
+      if (v === state.index && state.phase === "feedback") {
+        primary = h("button", { class: "btn btn-primary", type: "button", id: "continue", text: last ? "Finish the journey" : "Continue", onclick: onContinue });
+      } else if (last) {
+        primary = h("button", { class: "btn btn-primary", type: "button", id: "back-to-final", text: "Back to the final message", onclick: backToFinal });
+      } else {
+        primary = h("button", { class: "btn btn-primary", type: "button", id: "next", text: "Next question", onclick: function () { goTo(v + 1); } });
+      }
+      var navRow = [primary];
+      if (v > 0) navRow.push(h("button", { class: "btn btn-quiet", type: "button", id: "prev", text: "Previous question", onclick: function () { goTo(v - 1); } }));
+      fb.appendChild(h("div", { class: "actions-row" }, navRow));
+      section.appendChild(fb);
+      section.querySelector("#question-text").removeAttribute("data-focus");
+    }
+
+    app.appendChild(section);
+  }
+
+  function onSubmit() {
+    if (!onFrontier()) return; // blocks double submission, and answers on questions already solved
+    var checked = app.querySelector("input[name=answer]:checked");
+    if (!checked || checked.disabled) return;
+    var pick = parseInt(checked.value, 10);
+    var q = QUESTIONS[state.index];
+    if (pick === q.correct) {
+      state.phase = "feedback";
+      saveState();
+      render("[data-focus]");
+      var fb = document.getElementById("feedback");
+      if (fb && fb.scrollIntoView) fb.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    } else {
+      if (state.wrong[state.index].indexOf(pick) === -1) state.wrong[state.index].push(pick);
+      saveState();
+      render("#try-again", true);
+    }
+  }
+
+  function onContinue() {
+    if (state.phase !== "feedback") return;
+    if (state.index === TOTAL - 1) {
+      state.phase = "final";
+      reviewing = false;
+    } else {
+      state.index += 1;
+      state.phase = "question";
+    }
+    viewIndex = state.index;
+    saveState();
+    render("[data-focus]");
+  }
+
+  function backToFinal() {
+    reviewing = false;
+    render("[data-focus]");
+  }
+
+  function lookBack() {
+    reviewing = true;
+    viewIndex = 0;
+    render("[data-focus]");
+  }
+
+  /* ---------- Final reveal ---------- */
+
+  function firstTryScore() {
+    var n = 0;
+    for (var i = 0; i < TOTAL; i++) if (state.wrong[i].length === 0) n++;
+    return n;
+  }
+
+  function renderFinal() {
+    var message = SECRET.getMessage();
+    var title = h("h1", { class: "reveal", tabindex: "-1", "aria-label": message, "data-focus": "" });
+    var chars = [];
+    message.split(" ").forEach(function (word, wi, arr) {
+      var wordEl = h("span", { class: "word", "aria-hidden": "true" });
+      Array.prototype.forEach.call(word, function (ch) {
+        var s = h("span", { class: "ch", text: ch });
+        chars.push(s);
+        wordEl.appendChild(s);
+      });
+      title.appendChild(wordEl);
+      if (wi < arr.length - 1) title.appendChild(document.createTextNode(" "));
+    });
+
+    var after = h("div", { class: "after" }, [
+      h("p", { class: "tagline", text: "Some discoveries change the world. Some news changes a family." }),
+      h("p", { class: "cheer", text: SECRET.getCheer() }),
+      h("p", { class: "score", text: "You got " + firstTryScore() + " of " + TOTAL + " right on the first try." }),
+      h("div", { class: "actions" }, [
+        h("button", { class: "btn btn-quiet", type: "button", id: "look-back", text: "Look back at the questions", onclick: lookBack }),
+        h("button", { class: "btn btn-quiet", type: "button", id: "replay", text: "Replay", onclick: replay })
+      ])
+    ]);
+
+    app.appendChild(h("section", { class: "final" }, [title, after]));
+
+    function finish() {
+      after.classList.add("on");
+      startConfetti();
+    }
+
+    if (reduceMotion) {
+      chars.forEach(function (c) { c.classList.add("on"); });
+      finish();
+      return;
+    }
+
+    var i = 0;
+    revealTimer = setInterval(function () {
+      if (i < chars.length) {
+        chars[i].classList.add("on");
+        i += 1;
+      } else {
+        clearInterval(revealTimer);
+        revealTimer = null;
+        setTimeout(finish, 350);
+      }
+    }, 70);
+  }
+
+  function replay() {
+    clearState();
+    savedProgress = null;
+    state = freshState();
+    viewIndex = 0;
+    reviewing = false;
+    render();
+  }
+
+  /* ---------- Confetti ---------- */
+
+  function startConfetti() {
+    if (reduceMotion || confettiCleanup) return;
+    var canvas = h("canvas", { class: "confetti", "aria-hidden": "true" });
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext("2d");
+    if (!ctx) { document.body.removeChild(canvas); return; }
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0;
+
+    function size() {
+      W = canvas.width = Math.floor(window.innerWidth * dpr);
+      H = canvas.height = Math.floor(window.innerHeight * dpr);
+    }
+    size();
+    window.addEventListener("resize", size);
+
+    var colors = ["#e0ad56", "#8fdcb0", "#eef1ea", "#6fb7c9", "#f0a08f"];
+    var pieces = [];
+    for (var i = 0; i < 150; i++) {
+      pieces.push({
+        x: Math.random() * W,
+        y: -Math.random() * H * 0.6,
+        w: (6 + Math.random() * 7) * dpr,
+        vx: (Math.random() - 0.5) * 1.6 * dpr,
+        vy: (1.6 + Math.random() * 2.6) * dpr,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.18,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    var start = performance.now();
+    var raf = 0;
+    var stopped = false;
+
+    function frame(now) {
+      if (stopped) return;
+      var t = now - start;
+      ctx.clearRect(0, 0, W, H);
+      var fade = Math.max(0, 1 - Math.max(0, t - 4200) / 1800);
+      pieces.forEach(function (p) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.012 * dpr;
+        p.rot += p.vr;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.globalAlpha = fade;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.w / 4, p.w, p.w / 2);
+        ctx.restore();
+      });
+      if (t < 6000) raf = requestAnimationFrame(frame);
+      else cleanup();
+    }
+
+    function cleanup() {
+      stopped = true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", size);
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+      confettiCleanup = null;
+    }
+
+    confettiCleanup = cleanup;
+    raf = requestAnimationFrame(frame);
+  }
+
+  /* ---------- Keyboard shortcuts: A-C or 1-3 pick an option ---------- */
+
+  document.addEventListener("keydown", function (e) {
+    if (!onFrontier() || e.ctrlKey || e.metaKey || e.altKey) return;
+    var key = e.key.toUpperCase();
+    var idx = LETTERS.indexOf(key);
+    if (idx === -1 && key >= "1" && key <= "3") idx = parseInt(key, 10) - 1;
+    if (idx === -1) return;
+    var input = document.getElementById("choice-" + idx);
+    if (input && !input.disabled) {
+      input.checked = true;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+      input.focus();
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" || !onFrontier()) return;
+    var el = document.activeElement;
+    if (el && el.tagName === "INPUT" && el.type === "radio") {
+      e.preventDefault();
+      onSubmit();
+    }
+  });
+
+  /* ---------- Start ---------- */
+
+  function boot() {
+    if (!dataIsValid()) {
+      app.appendChild(h("section", { class: "fallback" }, [
+        h("h1", { text: "This quiz isn’t ready yet" }),
+        h("p", { text: "Something is wrong with the quiz files. Please ask whoever sent it to you for a fresh copy." })
+      ]));
+      return;
+    }
+    var loaded = loadState();
+    if (loaded.phase === "question" || loaded.phase === "feedback") {
+      savedProgress = loaded;
+      state = freshState();
+    } else if (loaded.phase === "final") {
+      state = loaded;
+      viewIndex = state.index;
+      reviewing = false;
+    } else {
+      state = freshState();
+    }
+    render();
+  }
+
+  boot();
+})();
+
+</script>
+</body>
+</html>
